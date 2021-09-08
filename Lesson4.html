@@ -1,0 +1,587 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 4: Finding Homologous Genes with BLAST &#8212; Gold Lab Training Manual</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lesson 5: Extracting Genes and Making Alignments" href="Lesson5.html" />
+    <link rel="prev" title="Lesson 3: Git and GitHub" href="Lesson3.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Gold Lab Training Manual</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lesson0.html">
+   Lesson 0: Configuring your computer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lesson1.html">
+   Lesson 1: Basic Command Line Skills
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lesson2.html">
+   Lesson 2: Manipulating Text with Grep and Sed
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lesson3.html">
+   Lesson 3: Git and GitHub
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Lesson 4: Finding Homologous Genes with BLAST
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lesson5.html">
+   Lesson 5: Extracting Genes and Making Alignments
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Lesson4.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FLesson4.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-are-homologous-genes">
+   4.0. What are homologous genes?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#identifying-homologous-genes-with-the-blast-web-server">
+   4.1. Identifying homologous genes with the BLAST web server
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#identifying-homologous-genes-using-blast-on-a-local-machine">
+   4.2. Identifying homologous genes using BLAST on a local machine
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preparing-query-and-database-text-files">
+     4.2.1. Preparing query and database text files
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-the-database">
+     4.2.2. Build the database
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#upload-changes-to-your-github-repository">
+   4.3. Upload changes to your GitHub repository
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <!-- #region -->
+<div class="section" id="lesson-4-finding-homologous-genes-with-blast">
+<h1>Lesson 4: Finding Homologous Genes with BLAST<a class="headerlink" href="#lesson-4-finding-homologous-genes-with-blast" title="Permalink to this headline">¶</a></h1>
+<p>© David Gold. Except where the source is noted, this work is licensed under a <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License CC-BY 4.0</a>.</p>
+<p>Check for any changes in the course material on GitHub:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git fetch upstream
+git checkout master
+git merge upstream/master
+</pre></div>
+</div>
+<div class="section" id="what-are-homologous-genes">
+<h2>4.0. What are homologous genes?<a class="headerlink" href="#what-are-homologous-genes" title="Permalink to this headline">¶</a></h2>
+<p>In comparative genomics, our goal is to understand the evolution and function of genes (as well as other genetic elements). To compare genes between individuals or species, we need to indetify <strong>homologous</strong> bits of DNA. <a class="reference external" href="https://en.wikipedia.org/wiki/Sequence_homology">Homologous DNA</a> is DNA that is conserved between to organisms because it was present in their last common ancestor.</p>
+<p>We can identify homologous DNA between organisms based on how similar their DNA or amino acid (if we are working with proteins) sequences are. <strong>While similarities between DNA can be expressed as a percentage (a gene between humans and mice might be 78% similar in its DNA sequences) homology is binary; genes either are or are not derived from an ancestral sequence.</strong></p>
+</div>
+<div class="section" id="identifying-homologous-genes-with-the-blast-web-server">
+<h2>4.1. Identifying homologous genes with the BLAST web server<a class="headerlink" href="#identifying-homologous-genes-with-the-blast-web-server" title="Permalink to this headline">¶</a></h2>
+<p>To perform this exercise, we’re going to use the <a class="reference external" href="https://www.ncbi.nlm.nih.gov/">National Center for Biotechnology Information (NCBI)</a>. This is a public database with nearly all of the genetic material scientists have sequenced and published.</p>
+<p>In particular, we’re going to use a program on NCBI called <strong>BLAST (Basic Local Alignment Search Tool)</strong>. BLAST takes a query sequence that you provide, and compares it against all sequences in the NCBI database. It looks for similar sequences that might be homologous.</p>
+<p>There are four different versions of BLAST, depending on what you want to use for the query and the database. Keep in mind that to compare DNA to proteins, the DNA first has to be <strong>translated</strong> into amino acids:</p>
+<ul class="simple">
+<li><p><strong>Nucleotide BLAST (blastn</strong>): compares a DNA query to a DNA database</p></li>
+<li><p><strong>Protein BLAST (blastp)</strong>: compares a protein query to a protein database</p></li>
+<li><p><strong>blastx</strong>: compares a translated DNA query to a protein database</p></li>
+<li><p><strong>tblastn</strong>: compares a protein query to a translated DNA database</p></li>
+<li><p><strong>tblastx</strong>: compares a translated DNA query to a translated DNA database</p></li>
+</ul>
+<p>The program you want to use depends on what you’re trying to accomplish. If you want to find homologous sequences from closely related species (or individuals within a species), you’re probably interested in comparing DNA. If you want to find homologous sequences from distantly related species, you’re probably interested in comparing proteins (since many synonymous DNA triplets code for the same amino acid, DNA tends to evolve faster than proteins, making it harder to compare across distantly related life forms).</p>
+<p>Let’s test it out!
+Here is a DNA sequence from an earthworm (<em>Lumbricus terrestris)</em>. This is in a format called the <strong>FASTA format</strong>. The first line (starting with a “&gt;” symbol) describes the sequence. The other lines contain the DNA code:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;Earthworm_mystery_gene
+TCCGCCCTTGGTAAGCTGAAGATCCCGGGGGTTGGATCCCTCAGTCAGAGCACGATCTGTCGATTCGAATCGCTCACCC
+TCAGCCACAACAACATGGTGGCGCTAAAGCCCGTCCTCCAGGCGTGGCTCGAGGAGGCGGAGAAGTCCCGGATGGAGAA
+CCGGTTGCGGAACGAGCTGTTCAACGGAACTGGTCCCGGCGGAGACAAGAAGCGGAAGCGGACGTCGATCGCCGCCCCT
+GAGAAGCGATCCCTCGAGGCCTACTTCGCCATCCAGCCGCGTCCGTCGGGCGAGAAGATCGCGCAGATCGCCGACAAAC
+TCGATCTGAAGAAGAACGTCGTT
+</pre></div>
+</div>
+<p>We want to compare this sequence to distantly related animals, so we should compare this earthworm <strong>query sequence</strong> against a <strong>protein database</strong>. I would therefore recommend using blastx.</p>
+<p>Take this sequence and submit it to <a class="reference external" href="https://blast.ncbi.nlm.nih.gov">BLAST</a>. Pick <code class="docutils literal notranslate"><span class="pre">blastx</span></code> and you should see a page like this:</p>
+<img src="Additional_Materials/Images/4_BLAST_Screen1.png">
+<p>The first heading: <code class="docutils literal notranslate"><span class="pre">Enter</span> <span class="pre">Query</span> <span class="pre">Sequence</span></code> is where you provide the query sequence. Copy the earthworm sequence provided earlier and paste it into this box. The second heading” <code class="docutils literal notranslate"><span class="pre">Choose</span> <span class="pre">Search</span> <span class="pre">Set</span></code> tells BLAST whether you want to search the whole NCBI database, or just a subset of it. For now, let’s leave all of these other parameters empty. Hit the “BLAST” button at the bottom of the screen and let’s see what we find!</p>
+<p>It might take a few minutes for BLAST to finish running, so be patient. BLAST is comparing your query sequence to ~209 million other sequences in the NCBI database! but in the end you’ll come to a page like this:</p>
+<img src="Additional_Materials/Images/4_BLAST_Screen2.png">
+<p>The <code class="docutils literal notranslate"><span class="pre">Descriptions</span></code> tab lists the results of the BLAST search from best match to worst. The features used to determine the best match are described in the <code class="docutils literal notranslate"><span class="pre">Query</span> <span class="pre">Cover</span></code> column (how much of the query is covered by the database match), and the <code class="docutils literal notranslate"><span class="pre">Per.</span> <span class="pre">Ident</span></code> (percent identity) column (how similar are the query and match sequences). <code class="docutils literal notranslate"><span class="pre">Query</span> <span class="pre">Cover</span></code> and <code class="docutils literal notranslate"><span class="pre">Per.</span> <span class="pre">Ident</span></code> are used to calculate the <code class="docutils literal notranslate"><span class="pre">E</span> <span class="pre">Value</span></code>, which is the likelihood that the query and match look similar by chance (in other words, the probability that they are not homologous). An <strong>e-value</strong> cutoff of 10e-5 is often used to determine whether genes are homologous or not, but to know for sure a scientist has to do lots of additional, careful study.</p>
+<p>The first hit has 100% “Query cover” and 100% “Ident”, meaning it’s identical to the sequence we submitted. According to the E-value, the probability that these two sequences match perfectly by chance is 1-76 (that is pretty unlikely). In other words, our query is a perfect match to the “class IV POU domain” protein in the earthworm (<em>Lumbricus terrestris</em>). We’ve identified the mystery gene!</p>
+<p>In addition to this best hit, we can look at other similar genes from other organisms. The next best hit comes from <em>Helobdella robusta</em>. Do you know what kind of organism that is? If not, try searching the name in Google. Does it make sense that our gene from <em>Lumbricus</em> is very similar to a gene from <em>Helobdella</em>? Check out some of the other species on the list. If you don’t recognize the name, search for it online. These are homologous genes from all sorts of different animals.</p>
+<p>The BLAST website has many other powerful features. You should play around with the different tabs and options to better understand it. But this covers the minimum information we need to perform BLAST on our local computers.</p>
+</div>
+<div class="section" id="identifying-homologous-genes-using-blast-on-a-local-machine">
+<h2>4.2. Identifying homologous genes using BLAST on a local machine<a class="headerlink" href="#identifying-homologous-genes-using-blast-on-a-local-machine" title="Permalink to this headline">¶</a></h2>
+<p>What if you want to use a custom database that is not available on NCBI? Or what if you want to build BLAST searches into a computer program that you are writing? Fortunately, you can download and run BLAST on your personal computer for custom BLAST analyses.</p>
+<p>To start, use Homebrew to download BLAST:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">install</span> <span class="n">blast</span>
+</pre></div>
+</div>
+<p>You can now call the five different BLAST algorithms by using their names: <code class="docutils literal notranslate"><span class="pre">blastn</span></code>, <code class="docutils literal notranslate"><span class="pre">blastp</span></code>, <code class="docutils literal notranslate"><span class="pre">blastx</span></code>, <code class="docutils literal notranslate"><span class="pre">tblastn</span></code>, and <code class="docutils literal notranslate"><span class="pre">tblastx</span></code>.</p>
+<div class="section" id="preparing-query-and-database-text-files">
+<h3>4.2.1. Preparing query and database text files<a class="headerlink" href="#preparing-query-and-database-text-files" title="Permalink to this headline">¶</a></h3>
+<p>For this exercise I have prepared query and database sequences for you. They are provided in the <code class="docutils literal notranslate"><span class="pre">Additional</span> <span class="pre">Materials</span></code> folder of the Gold_Lab_Training GitHub repository. Go to the local directory in Terminal and check out the files:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">git</span><span class="o">/</span><span class="n">Gold_Lab_Training</span><span class="o">/</span><span class="n">Additional_Materials</span><span class="o">/</span>
+<span class="n">ls</span>
+</pre></div>
+</div>
+<p>Among other things, you should see the following:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Lesson_4_Query_Sequences.fasta
+Lesson_4_Yeast_Proteome.fasta
+</pre></div>
+</div>
+<p>Our database is going be a <strong>proteome</strong> (all the proteins in a genome) for brewer’s yeast (<em>Saccharomyces cerevisiae</em>), a common laboratory model organism. We also have a set of query sequences.</p>
+<p>These files are not big, but some FASTA files can be hundreds or thousands of megabytes in size! You will not be able to look at the largest FASTA files using a text editor. We can get a peek at the content of these files using the <code class="docutils literal notranslate"><span class="pre">head</span></code> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">head</span> <span class="o">-</span><span class="n">n</span> <span class="mi">100</span> <span class="n">Lesson_4_Query_Sequences</span><span class="o">.</span><span class="n">fasta</span>
+</pre></div>
+</div>
+<p>We get this in return:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;CBN76684.1 Sterol methyltransferase [Ectocarpus siliculosus]
+MATTLALCVVSSAVLYAQLKDKPLDSVLESPLDQPPLVLANAALTLACSTLVVLKHEVFCRLVYATDPLE
+VTWTFIRGFFGQEKGRGIKVDSWITEYNRLHDDNESSVEEREGSYAKLVNAYYELATLFYEWGWGSSFHF
+ASRWRNESFQDSIKRHEYYLGGRLGVSRGAKVLDCGCGIGGPYRNIAQFTGADITGITINEYQVKRGNEV
+NKNMGVDQQCRSIQGDFMKLPFEDNSFDGVYAIEATCHAPQREGVYSEIYRVLKPGCVFACYEWCLTDKF
+DASNDKHRLIKKQIEEGDGLPDMITPPEVDSALKASGFEILETRDAALDPNPGGIPWYQPLTPSWNVFTQ
+RFQFNWLGMRLTKAALYVMEMFYLAPAGTNKVQAMLQAGGMGCAQGGLTGTFTPMYLAVCRKPL
+&gt;AAA39883.1 p53 [Mus musculus]
+MTAMEESQSDISLELPLSQETFSGLWKLLPPEDILPSPHCMDDLLLPQDVEEFFEGPSEALRVSGAPAAQ
+DPVTETPGPVAPAPATPWPLSSFVPSQKTYQGNYGFHLGFLQSGTAKSVMCTYSPPLNKLFFQLAKTCPV
+QLWVSATPPAGSRVRAMAIYKKSQHMTEVVRRCPHHERCSDGDGLAPPQHLIRVEGNLYPEYLEDRQTFR
+HSVVVPYEPPEAGSEYTTIHYKYMCNSSCMGGMNRRPILTIITLEDSSGNLLGRDSFEVRVCACPGRDRR
+TEEENFRKKEVLCPELPPGSAKRALPTCTSASPPQKKKPLDGEYFTLKIRGRKRFEMFRELNEALELKDA
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">head</span></code> command returned less than 100 lines, which means we are looking at the whole file. There are only two query sequences:</p>
+<ol class="simple">
+<li><p>A sterol methyltransferase gene from the brown alga <em>Ectocarpus</em></p></li>
+<li><p>A p53 gene from the mouse <em>Mus</em></p></li>
+</ol>
+<p>Our files are not very big, so let’s start by opening the folder containing the files so that we can look at them in BBEdit:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">open</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>Open the two files in BBEdit. The format is standard output for fasta sequences from NCBI. There are two things I don’t like about this format:</p>
+<ul class="simple">
+<li><p>Firstly, there are spaces. White spaces are problematic for coding because they have meaning. That is why all of the files and folders we use separate words with underscores (<code class="docutils literal notranslate"><span class="pre">_</span></code>).</p></li>
+<li><p>Secondly, I don’t like how the species names are at the end of the sequence name. When we reconstruct gene alignments or evolutionary trees (which we’ll do in future lessons) we often only see the first part of the sequence name in our output. The NCBI reference ID (the list of letters and numbers at the start of each sequence name) is not very informative in these cases.</p></li>
+</ul>
+<p>In BBEdit use the find function (<code class="docutils literal notranslate"><span class="pre">Search</span> <span class="pre">/</span> <span class="pre">Find...</span></code> in the menu or hit the <code class="docutils literal notranslate"><span class="pre">command</span></code> + <code class="docutils literal notranslate"><span class="pre">f</span></code> keys) and make the following changes:</p>
+<p><strong>Find:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> 
+</pre></div>
+</div>
+<p><em>(this doesn’t look like anything, but it’s actually a space)</em></p>
+<p><strong>Replace:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_</span>
+</pre></div>
+</div>
+<p><strong>Find:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">&gt;</span><span class="p">)(</span><span class="o">.*</span><span class="p">)(</span>\\<span class="p">[)(</span><span class="o">.*</span><span class="p">)(</span>\\<span class="p">])</span>
+</pre></div>
+</div>
+<p><strong>Replace:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\<span class="mi">1</span>\<span class="mi">4</span><span class="n">_</span>\<span class="mi">2</span>
+</pre></div>
+</div>
+<p>What if your fasta file is too big to edit in a text editor? An easy way to replace spaces is with <strong><code class="docutils literal notranslate"><span class="pre">sed</span></code></strong>, the stream editor. Sed can perform basic text transformations on a file, and is much more memory efficient than other text editors. The find and replace function in sed follows this basic pattern:</p>
+<p>Blue boxes (alert-info)</p>
+<div class="alert alert-block alert-info">
+<b>sed find and replace snytax:</b> sed 's/{FIND}/{REPLACE}/g' {INPUT_FILE} > {OUTPUT_FILE}
+</div>
+<p>So to replace spaces with underscores, you could type the following into Terminal:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sed &#39;s/ /_/g&#39; Lesson_4_Query_Sequences.fasta &gt; Lesson_4_Query_Sequences.modified.fasta
+</pre></div>
+</div>
+</div>
+<div class="section" id="build-the-database">
+<h3>4.2.2. Build the database<a class="headerlink" href="#build-the-database" title="Permalink to this headline">¶</a></h3>
+<p>Now that our text files are formatted the way we like, we need to format “database” sequences into a proper BLAST database. We do this with the program <code class="docutils literal notranslate"><span class="pre">makeblastdb</span></code>, which is included in your version of blast. There are several important flags we need to specify for the program to work:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-in</span></code> : the input fasta file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-dbtype</span></code> : specify whether the data represents DNA (nucl) or protein (prot) sequences.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-out</span></code> : what we want the database to be called</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">makeblastdb</span> <span class="o">-</span><span class="ow">in</span> <span class="n">Lesson_4_Yeast_Proteome</span><span class="o">.</span><span class="n">fasta</span> <span class="o">-</span><span class="n">dbtype</span> <span class="n">prot</span> <span class="o">-</span><span class="n">out</span> <span class="n">Yeast</span>
+</pre></div>
+</div>
+<p>We are now ready to BLAST! We have a protein query and a protein database, so we will be using <code class="docutils literal notranslate"><span class="pre">blastx</span></code>. Again, there are several important flags we need to call:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-query</span></code>: the query fasta file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-db</span></code> : the name of the database</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-evalue</span></code> : the e-vlaue cutoff we want to use (generally set to 10e-5)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-outfmt</span></code> : the standard output is visually interesting but hard to work with; we use a different, tab-delimited format</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-out</span></code> : the name of the results file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-max_target_seqs</span></code> (optional) : how many matches do you want to get for each query?</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">blastp</span> <span class="o">-</span><span class="n">query</span> <span class="n">Lesson_4_Query_Sequences</span><span class="o">.</span><span class="n">fasta</span> <span class="o">-</span><span class="n">db</span> <span class="n">Yeast</span> <span class="o">-</span><span class="n">evalue</span> <span class="mf">10e-5</span> <span class="o">-</span><span class="n">outfmt</span> <span class="mi">6</span> <span class="o">-</span><span class="n">out</span> <span class="n">Lesson_4_Results</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>While the <code class="docutils literal notranslate"><span class="pre">-outfmt</span> <span class="pre">6</span></code> option provides an easy to use, <strong>tab-delimited format</strong> to the data (in other words, it formats the data into rows and columns that could be read by a spreadsheet program like Microsoft Excel). Unfortunately, the output does not provide information on what each column signifies. You can add this information by using the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;qseqid</span><span class="se">\t</span><span class="s2">sseqid</span><span class="se">\t</span><span class="s2">pident</span><span class="se">\t</span><span class="s2">length</span><span class="se">\t</span><span class="s2">mismatch</span><span class="se">\t</span><span class="s2">gapopen</span><span class="se">\t</span><span class="s2">qstart</span><span class="se">\t</span><span class="s2">qend</span><span class="se">\t</span><span class="s2">sstart</span><span class="se">\t</span><span class="s2">send</span><span class="se">\t</span><span class="s2">evalue</span><span class="se">\t</span><span class="s2">bitscore&quot;</span><span class="o">|</span><span class="n">cat</span> \
+<span class="o">-</span> <span class="n">Lesson_4_Results</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">out</span> <span class="o">&amp;&amp;</span> <span class="n">mv</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">out</span> <span class="n">Lesson_4_Results</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Let’s look at the results using <code class="docutils literal notranslate"><span class="pre">head</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">head</span> <span class="n">Lesson_4_Results</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Terminal should return the following:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>qseqid	sseqid	pident	length	mismatch	gapopen	qstart	qend	sstart	send	evalue	bitscore
+Ectocarpus_siliculosus_CBN76684.1_Sterol_methyltransferase	sp|P25087|ERG6_YEAST_Sterol_24-C-methyltransferase	43.296	358	182	3	75	413	13	368	2.78e-100	301
+</pre></div>
+</div>
+<p>It might be easier for you to interpret the results if they are formatted as a table (you can also do this by copying and pasting the results into a spreadsheet):</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>qseqid</p></th>
+<th class="text-align:left head"><p>sseqid</p></th>
+<th class="text-align:left head"><p>pident</p></th>
+<th class="text-align:left head"><p>length</p></th>
+<th class="text-align:left head"><p>mismatch</p></th>
+<th class="text-align:left head"><p>gapopen</p></th>
+<th class="text-align:left head"><p>qstart</p></th>
+<th class="text-align:left head"><p>qend</p></th>
+<th class="text-align:left head"><p>sstart</p></th>
+<th class="text-align:left head"><p>send</p></th>
+<th class="text-align:left head"><p>evalue</p></th>
+<th class="text-align:left head"><p>bitscore</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>Ectocarpus_siliculosus_CBN76684.1_Sterol_methyltransferase</p></td>
+<td class="text-align:left"><p>sp|P25087|ERG6_YEAST_Sterol_24-C-methyltransferase</p></td>
+<td class="text-align:left"><p>43.296</p></td>
+<td class="text-align:left"><p>358</p></td>
+<td class="text-align:left"><p>182</p></td>
+<td class="text-align:left"><p>3</p></td>
+<td class="text-align:left"><p>75</p></td>
+<td class="text-align:left"><p>413</p></td>
+<td class="text-align:left"><p>13</p></td>
+<td class="text-align:left"><p>368</p></td>
+<td class="text-align:left"><p>2.78e-100</p></td>
+<td class="text-align:left"><p>301</p></td>
+</tr>
+</tbody>
+</table>
+<p>This is what the header IDs mean:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Column header</p></th>
+<th class="text-align:center head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>qseqid</p></td>
+<td class="text-align:center"><p>query (e.g., gene) sequence id</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>sseqid</p></td>
+<td class="text-align:center"><p>subject (e.g., reference genome) sequence id</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>pident</p></td>
+<td class="text-align:center"><p>percentage of identical matches</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>length</p></td>
+<td class="text-align:center"><p>alignment length</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>mismatch</p></td>
+<td class="text-align:center"><p>number of mismatches</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>gapopen</p></td>
+<td class="text-align:center"><p>number of gap openings</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>qstart</p></td>
+<td class="text-align:center"><p>start of alignment in query</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>qend</p></td>
+<td class="text-align:center"><p>end of alignment in query</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>sstart</p></td>
+<td class="text-align:center"><p>start of alignment in subject</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>send</p></td>
+<td class="text-align:center"><p>end of alignment in subject</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>evalue</p></td>
+<td class="text-align:center"><p>expect value</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>bitscore</p></td>
+<td class="text-align:center"><p>bit score</p></td>
+</tr>
+</tbody>
+</table>
+<p>This is the result of our BLAST search! One of our query sequences (Mus_musculus_AAA39883.1_p53) had no matches to the yeast database. Our other query (Ectocarpus_siliculosus_CBN76684.1_Sterol_methyltransferase) had a single hit in the yeast database (sp|P25087|ERG6_YEAST_Sterol_24-C-methyltransferase). The two proteins are ~43% identical (the “pident” column) with an e-value score of 2.78e-100. These genes are probably homologs of each other!</p>
+</div>
+</div>
+<div class="section" id="upload-changes-to-your-github-repository">
+<h2>4.3. Upload changes to your GitHub repository<a class="headerlink" href="#upload-changes-to-your-github-repository" title="Permalink to this headline">¶</a></h2>
+<p>Don’t forget to upload the changes you made to your forked GitHub account:</p>
+<p>cd ../
+git add –all
+git commit -m ‘performed blast exercise’
+git push</p>
+<!-- #endregion -->
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="Lesson3.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Lesson 3: Git and GitHub</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="Lesson5.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Lesson 5: Extracting Genes and Making Alignments</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By David A. Gold<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
