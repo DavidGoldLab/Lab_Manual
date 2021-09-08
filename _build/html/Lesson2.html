@@ -1,0 +1,638 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 2: Manipulating Text with Grep and Sed &#8212; Gold Lab Training Manual</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lesson 3: Git and GitHub" href="Lesson3.html" />
+    <link rel="prev" title="Lesson 1: Basic Command Line Skills" href="Lesson1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Gold Lab Training Manual</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lesson0.html">
+   Lesson 0: Configuring your computer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lesson1.html">
+   Lesson 1: Basic Command Line Skills
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Lesson 2: Manipulating Text with Grep and Sed
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lesson3.html">
+   Lesson 3: Git and GitHub
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lesson4.html">
+   Lesson 4: Finding Homologous Genes with BLAST
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lesson5.html">
+   Lesson 5: Extracting Genes and Making Alignments
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Lesson2.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FLesson2.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   2.0. Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introducing-grep-and-egrep">
+   2.1 Introducing grep and egrep
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extracting-patterns-with-grep">
+     2.1.1. Extracting patterns with grep
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#doing-more-complicated-grep-searches-with-regular-expressions">
+     2.1.2. Doing more complicated grep searches with regular expressions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introducing-sed-and-gsed">
+   2.2 Introducing sed and gsed
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-and-replace-text-with-gsed">
+     2.2.1. Find and replace text with gsed
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cleanup">
+     Cleanup
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#find-and-replace-text-in-bbedit">
+   2.3 Find and replace text in BBEdit
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Cleanup
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="lesson-2-manipulating-text-with-grep-and-sed">
+<h1>Lesson 2: Manipulating Text with Grep and Sed<a class="headerlink" href="#lesson-2-manipulating-text-with-grep-and-sed" title="Permalink to this headline">¶</a></h1>
+<p>© David Gold. Except where the source is noted, this work is licensed under a <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License CC-BY 4.0</a>.</p>
+<div class="section" id="introduction">
+<h2>2.0. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The goal of this module is to get you comfortable manipulating text documents with command line tools. Some of the text files we work with are huge (multiple gigabytes in size!) and contain millions of lines. You don’t want to edit these kinds of files by hand, and sometimes they are too large to open in a text editor. The tips and tricks below will get you working with text files in no time.</p>
+</div>
+<div class="section" id="introducing-grep-and-egrep">
+<h2>2.1 Introducing grep and egrep<a class="headerlink" href="#introducing-grep-and-egrep" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">grep</span></code> (an acronym for “Global Regular Expression Print”) is installed by default on Linux  and Mac systems. Grep is extremely useful to search for patterns (a particular set of characters or words) in a file or group of files.</p>
+<p><code class="docutils literal notranslate"><span class="pre">egrep</span></code> (“Extended Global Regular Expression Print”) is a very similar program that has some additional capabilities, including the ability to use more complex regular expressions (a subject we will discuss later in this module). I will use <code class="docutils literal notranslate"><span class="pre">egrep</span></code> in this module, though <code class="docutils literal notranslate"><span class="pre">grep</span></code> would also work in most cases.</p>
+<div class="alert alert-block alert-info">
+<b>Syntax for grep / egrep : </b>
+grep [options / flags] [pattern] [file]
+</div>
+<p>To start testing out <code class="docutils literal notranslate"><span class="pre">egrep</span></code>, let’s create a new text file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>
+<span class="n">nano</span> <span class="n">GREP_Test</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>This will open up the Nano text-editor described in Lesson 1. Copy and paste the following text into Nano:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Some</span> <span class="n">dogs</span> <span class="n">are</span> <span class="n">brown</span>
+<span class="n">Some</span> <span class="n">cats</span> <span class="n">are</span> <span class="n">grey</span>
+<span class="n">All</span> <span class="n">grey</span> <span class="n">cats</span> <span class="n">are</span> <span class="n">mammals</span>
+<span class="n">Parrots</span> <span class="n">can</span> <span class="n">be</span> <span class="n">many</span> <span class="n">colors</span>
+</pre></div>
+</div>
+<p>Remember, you need to use the <code class="docutils literal notranslate"><span class="pre">command</span></code> + <code class="docutils literal notranslate"><span class="pre">x</span></code> keys to exit Nano. Nano will then ask the following:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Save modified buffer (ANSWERING &quot;No&quot; WILL DESTROY CHANGES) ?
+</pre></div>
+</div>
+<p>Press the <code class="docutils literal notranslate"><span class="pre">y</span></code> key to save your file. Nano will then double-check what you want to name the file; hit the <code class="docutils literal notranslate"><span class="pre">enter</span> <span class="pre">/</span> <span class="pre">return</span></code> key to save the file.</p>
+<p>You can make sure the file saved correctly by using the <code class="docutils literal notranslate"><span class="pre">head</span></code> command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">head</span> <span class="n">GREP_Test</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>If everything worked your Terminal screen will return the text you pasted in.</p>
+<div class="section" id="extracting-patterns-with-grep">
+<h3>2.1.1. Extracting patterns with grep<a class="headerlink" href="#extracting-patterns-with-grep" title="Permalink to this headline">¶</a></h3>
+<p>You can use grep to extract lines that contain a pattern:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">egrep</span> <span class="s2">&quot;cat&quot;</span> <span class="n">GREP_Test</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">egrep</span></code> is case sensitive, so if you use the following command you will not find any matching lines:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">egrep</span> <span class="s2">&quot;CAT&quot;</span> <span class="n">GREP_Test</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>You can make <code class="docutils literal notranslate"><span class="pre">egrep</span></code> <strong>case insensitive</strong> by using the <code class="docutils literal notranslate"><span class="pre">-i</span></code> flag:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">egrep</span> <span class="o">-</span><span class="n">i</span> <span class="s2">&quot;CAT&quot;</span> <span class="n">GREP_Test</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>You can also use the <strong>invert</strong> flag <code class="docutils literal notranslate"><span class="pre">-v</span> </code> to report lines that do not contain a pattern:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">egrep</span> <span class="o">-</span><span class="n">v</span> <span class="s2">&quot;cat&quot;</span> <span class="n">GREP_Test</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">-o</span></code> flag reports <strong>only</strong> the pattern you searched for (assuming it exists in the input file):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">egrep</span> <span class="o">-</span><span class="n">o</span> <span class="s2">&quot;cat&quot;</span> <span class="n">GREP_Test</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Do you want to know how many lines have the word “cat”? You can figure that out using the <strong>count</strong> flag <code class="docutils literal notranslate"><span class="pre">-c</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">egrep</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;cat&quot;</span> <span class="n">GREP_Test</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>You can export your results to a new text document by using the greater-than (<code class="docutils literal notranslate"><span class="pre">&gt;</span></code>) symbol:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">egrep</span> <span class="s2">&quot;cat&quot;</span> <span class="n">GREP_Test</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">GREP_Test_cats_only</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>You can use the <code class="docutils literal notranslate"><span class="pre">ls</span></code> command to see the files in your folder (you can also use <code class="docutils literal notranslate"><span class="pre">open</span> <span class="pre">.</span></code> to view the folder in Mac Finder). You should see a text file caled “GREP_Test_cats_only.txt”.</p>
+</div>
+<div class="section" id="doing-more-complicated-grep-searches-with-regular-expressions">
+<h3>2.1.2. Doing more complicated grep searches with regular expressions<a class="headerlink" href="#doing-more-complicated-grep-searches-with-regular-expressions" title="Permalink to this headline">¶</a></h3>
+<p>A <strong>regular expression</strong>, often shortened to “regex” or “regexp”, is a way of specifying a pattern in text to find all occurrences that match the pattern. Here are some regular expressions I use a lot:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>character</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>^</p></td>
+<td><p>start of line</p></td>
+</tr>
+<tr class="row-odd"><td><p>$</p></td>
+<td><p>end of line</p></td>
+</tr>
+<tr class="row-even"><td><p>.</p></td>
+<td><p>wildcard (matches any character)</p></td>
+</tr>
+<tr class="row-odd"><td><p>*</p></td>
+<td><p>zero or more characters</p></td>
+</tr>
+<tr class="row-even"><td><p>+</p></td>
+<td><p>one or more characters</p></td>
+</tr>
+<tr class="row-odd"><td><p>[ ]</p></td>
+<td><p>matches a single character contained in brackets</p></td>
+</tr>
+<tr class="row-even"><td><p>\s</p></td>
+<td><p>matches any whitespace character (space, tab)</p></td>
+</tr>
+<tr class="row-odd"><td><p>\S</p></td>
+<td><p>matches any non-whitespace character</p></td>
+</tr>
+<tr class="row-even"><td><p>\t</p></td>
+<td><p>matches any tab character</p></td>
+</tr>
+<tr class="row-odd"><td><p>\d</p></td>
+<td><p>digit (numbers)</p></td>
+</tr>
+<tr class="row-even"><td><p>\D</p></td>
+<td><p>not digit (numbers)</p></td>
+</tr>
+<tr class="row-odd"><td><p>\w</p></td>
+<td><p>word (letters or numers)</p></td>
+</tr>
+<tr class="row-even"><td><p>\W</p></td>
+<td><p>not word (letters or numers)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Let’s say I wanted to find lines that end with the word “grey”. I can use the “end of line” charcter to anchor my search:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">egrep</span> <span class="s2">&quot;grey$&quot;</span> <span class="n">GREP_Test</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Or if I wanted to extract every word that starts with the letter “c”, I could ask egrep to look for the letter “c” followed by one or more non-whitespace characters (\S+) :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">egrep</span> <span class="o">-</span><span class="n">o</span> <span class="s2">&quot;c\S+&quot;</span> <span class="n">GREP_Test</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>There are several other ways I could have written the command that would have produced the same ouput. Can you come up with one?</p>
+</div>
+</div>
+<div class="section" id="introducing-sed-and-gsed">
+<h2>2.2 Introducing sed and gsed<a class="headerlink" href="#introducing-sed-and-gsed" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">sed</span></code> (short for stream editor) is a Unix utility that parses and transforms text. Like grep / egrep, there is a version of sed called <code class="docutils literal notranslate"><span class="pre">gsed</span></code> (GNU stream editor) which contains an expanded regular expression library. For that reason, I usually use gsed instead of sed.</p>
+<p>You can check to see if you have gsed installed on your computer by invoking the <code class="docutils literal notranslate"><span class="pre">-h</span></code> flag. If it works, you will see the help menu for gsed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gsed</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Most command-line programs have a help menu that can be accessed by adding the -h flag after the program name. It’s usually a good way to learn about a program’s syntax and capabilities (although some help menus are better than others).</p>
+</div>
+<div class="section" id="find-and-replace-text-with-gsed">
+<h3>2.2.1. Find and replace text with gsed<a class="headerlink" href="#find-and-replace-text-with-gsed" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">gsed</span></code> has a lot of capabilities, but I mainly use it for simple find and replace functions on large text files. Here is the structure of a gsed-based find and replace:</p>
+<div class="alert alert-block alert-info">
+<b>Syntax for sed / gsed : </b>
+gsed 's/SEARCH/REPLACEMENT/g' file
+</div>
+<p>Let’s say I wanted to replace all the spaces in “GREP_Test.txt” with underscores (<code class="docutils literal notranslate"><span class="pre">_</span></code>). That might seem odd, but it’s actually something I do all the time…I’ll explain it later. You can do that with the following <code class="docutils literal notranslate"><span class="pre">gsed</span></code> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gsed</span> <span class="s1">&#39;s/ /_/g&#39;</span> <span class="n">GREP_Test</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>The replaced text will appear on your Terminal screen. If you want to save the edited text you can export it to a new file with the “greater than” sign (<code class="docutils literal notranslate"><span class="pre">&gt;</span></code>)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gsed</span> <span class="s1">&#39;s/ /_/g&#39;</span> <span class="n">GREP_Test</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">GREP_Test_underscored</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Check that this code worked by using the <code class="docutils literal notranslate"><span class="pre">head</span></code> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">head</span> <span class="n">GREP_Test_underscored</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>If you want to perform a find and replace in the original file, you can use the <code class="docutils literal notranslate"><span class="pre">-i</span></code>(“<strong>in text</strong>”) flag:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gsed</span> <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;s/ /_/g&#39;</span> <span class="n">GREP_Test</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<div class="alert alert-block alert-danger">
+<b>Warning:</b> Using the gsed "-i" flag changes the original file, and you cannot undo it. Don't use the "-i" flag unless you are confident that the code you are running will work (or unless you can easily recreate the original file).
+</div>
+</div>
+<div class="section" id="cleanup">
+<h3>Cleanup<a class="headerlink" href="#cleanup" title="Permalink to this headline">¶</a></h3>
+<p>We’re done with the grep and sed exercises, so let’s remove the test files we made:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="o">-</span><span class="n">i</span> <span class="n">GREP_Test</span><span class="o">*</span>
+</pre></div>
+</div>
+<p>Did you notice how I used the asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>) to reference multiple files? Check the regular expression chart again if you don’t understand why that worked.</p>
+</div>
+</div>
+<div class="section" id="find-and-replace-text-in-bbedit">
+<h2>2.3 Find and replace text in BBEdit<a class="headerlink" href="#find-and-replace-text-in-bbedit" title="Permalink to this headline">¶</a></h2>
+<p>I find egrep and gsed useful for simple changes and for giant files. But I find these regular expressions most useful when working in BBEdit.</p>
+<p>Execute the following command in Terminal to create a new file called Example_Fasta.fasta:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;&gt;AIW82450.1 Pou4, partial [Xipholeptos notoides]</span><span class="se">\n</span><span class="s1">SDVGAALANLKLPGVGSLSQSTVCRFESLTLSHNNMIALKPVLQAWLEEAEKQAREKKIEGEAGVMPIHG</span><span class="se">\n</span><span class="s1">EKKRKRTSIAAPEKRSLEAYFAVQPRPSGEKIAQIAEKLDLKKNVVRVWFCNQRQKQKRMKFSATATH</span><span class="se">\n\n</span><span class="s1">&gt;AIC75325.1 POU-like homeodomain-containing protein, partial [Kelletia kelletii]</span><span class="se">\n</span><span class="s1">VTQADVGSALANLKIPGVGCLSQSTICRFESLTLSHNNMIALKPILMAWLEDAERQARERKADAGAEEKK</span><span class="se">\n</span><span class="s1">RKRTSIAAPEKRSLEAYFAVQPRPSGEKIAQIAEKLDLKKN&#39;</span> <span class="o">&gt;</span> <span class="n">Example_Fasta</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Open your current directory in Mac Finder so that you can access “Example_Fasta.txt” and open it in BBEdit:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">open</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>This is called a <strong>fasta</strong> file, which is a standardized format for storing genetic data. We will talk more about fasta files in later modules, so I won’t spend much time on them here. But this is the basic structure of a fasta file:</p>
+<p>&gt;Sequence 1
+The DNA or protein sequence</p>
+<p>&gt; Sequence 2
+The DNA or protein sequence</p>
+<p>…</p>
+<p>When you look at “Example_Fasta.txt” you will see two sequences that I got from <a class="reference external" href="https://www.ncbi.nlm.nih.gov">the National Center for Biotechnology Information (NCBI)</a> (we will talk about this database in more detail later). The IDs of the two sequences are the following:</p>
+<ul class="simple">
+<li><p>AIW82450.1 Pou4, partial [Xipholeptos notoides]</p></li>
+<li><p>AIC75325.1 POU-like homeodomain-containing protein, partial [Kelletia kelletii]</p></li>
+</ul>
+<p>This is a standard NCBI <strong>sequence ID</strong> (also called a <strong>header</strong>). It has a basic structure:</p>
+<ul class="simple">
+<li><p>The first part of each ID (e.g. “AIW82450.1”) is the <strong>sequence identifier</strong>. If I put that identifier in the <a class="reference external" href="https://www.ncbi.nlm.nih.gov">NCBI search bar</a> it would take me straight to the sequence.</p></li>
+<li><p>The next part of the ID (e.g. “Pou4, partial”) is a description of the sequence. This is generated by the scientist who submitted the sequence to NCBI, and may or may not be useful.</p></li>
+<li><p>The words in the brackets (<code class="docutils literal notranslate"><span class="pre">[]</span></code>) is the scientific name of the species each sequence comes from. Do you know what <em>Xipholeptos notoides</em> and <em>Kelletia kelletii</em> are? If not take a minute to Google them and find out!</p></li>
+</ul>
+<p>For a lot of the downstream work we do, I prefer a simple format where I start with the species name and then the sequence identifier, separating the two with a pipe (<code class="docutils literal notranslate"><span class="pre">|</span></code>) symbol. I also don’t want any whitespace characters, since those can cause problems in programs we’ll use later. In this case, I want the following ID:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>AIW82450.1 Pou4, partial [Xipholeptos notoides]
+</pre></div>
+</div>
+<p>To be replaced with:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Xipholeptos_notoides|AIW82450.1
+</pre></div>
+</div>
+<p>I could change the IDs by hand, but that becomes untenable if you’re dealing with hundreds or thousands of sequences. But it is very easy to do with BBEdit and grep.</p>
+<p>You can <strong>Find</strong> patterns in BEEdit by going to <code class="docutils literal notranslate"><span class="pre">Search</span> <span class="pre">&gt;</span> <span class="pre">Find</span></code> in the navigation menu at the top of BBEdit, or by hitting the <code class="docutils literal notranslate"><span class="pre">command</span></code> + <code class="docutils literal notranslate"><span class="pre">F</span></code> keys. A find and replace window will pop up that looks like this:</p>
+<p><img alt="Alt text" src="_images/2_BBEdit_Find.png" /></p>
+<p>The arrow points to a little box called “Grep”. If you check the box you can use grep and regular expressions in your search.</p>
+<p>Place the following text into the “Find” box:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">^&gt;</span><span class="p">)(</span>\<span class="n">S</span><span class="o">+</span><span class="p">)(</span><span class="o">.*</span><span class="p">)(</span>\<span class="p">[)(</span><span class="o">.*</span><span class="p">)(</span>\<span class="p">])</span>
+</pre></div>
+</div>
+<p>You’ll notice that if the “Grep” box is checked the text you pasted in changes into a bunch of colors, making it easy to identify the syntax of the pattern. If the box is unchecked then BBEdit will look for the literal pattern (spoiler: you’re not going to find it in this document).</p>
+<p>What does this pattern mean? We have used parentheses (<code class="docutils literal notranslate"><span class="pre">()</span></code>) to break our query into six parts (the value of that will become clear in a minute). Let’s break down the meaning of each part:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pattern</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>^&gt;</p></td>
+<td><p>Lines that start (<code class="docutils literal notranslate"><span class="pre">^</span></code>) with a greater-than symbol (<code class="docutils literal notranslate"><span class="pre">&gt;</span></code>) …</p></td>
+</tr>
+<tr class="row-odd"><td><p>\S+</p></td>
+<td><p>… then include one or more non-whitespace characters …</p></td>
+</tr>
+<tr class="row-even"><td><p>.*</p></td>
+<td><p>… then include any number of characters until you reach …</p></td>
+</tr>
+<tr class="row-odd"><td><p>[</p></td>
+<td><p>… a bracket (<code class="docutils literal notranslate"><span class="pre">[</span></code>) symbol. Remember that brackets have a special meaning in regex, so if you want to include a literal bracket you have to add the slash (<code class="docutils literal notranslate"><span class="pre">\</span></code>) to the front of it. Try deleting the slash and adding it back in; you’ll see the color of the bracket change, representing the change in meaning.</p></td>
+</tr>
+<tr class="row-even"><td><p>.*</p></td>
+<td><p>… then we look for any number of characters after the bracket until we reach…</p></td>
+</tr>
+<tr class="row-odd"><td><p>]</p></td>
+<td><p>… the end bracket (<code class="docutils literal notranslate"><span class="pre">]</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+<p>If you hit the <code class="docutils literal notranslate"><span class="pre">Next</span></code> and <code class="docutils literal notranslate"><span class="pre">Previous</span></code> buttons on the search window, you will see that it is highlighting the sequence IDs and nothing else.</p>
+<p>We can now use another pattern for our replace function. Because we broke our search into pieces with six pairs of parentheses, we can call different parts for our replace function.</p>
+<p>Place the following text into the “Replace” box:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\<span class="mi">1</span>\<span class="mi">5</span><span class="o">|</span>\<span class="mi">2</span>
+</pre></div>
+</div>
+<p>Here is the meaning of the replace:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pattern</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>\1</p></td>
+<td><p>Return the first thing in parentheses; in this case the “&gt;” symbol.</p></td>
+</tr>
+<tr class="row-odd"><td><p>\5</p></td>
+<td><p>Return the fifth thing in parenthesis; in this case the species name.</p></td>
+</tr>
+<tr class="row-even"><td><p>|</p></td>
+<td><p>Add a pipe symbol.</p></td>
+</tr>
+<tr class="row-odd"><td><p>\2</p></td>
+<td><p>Return the second thing in parentheses; in this case the sequence identifier.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Hit the <code class="docutils literal notranslate"><span class="pre">Replace</span> <span class="pre">All</span></code> button in your search window and <em>voilà</em>, you have changed the IDs of every sequence!</p>
+<p>You will need to do one more “find and replace” to replace white spaces with underscores, but I think you can figure it out (if not, you can always use the gsed command I taught you earlier!)</p>
+<div class="section" id="id1">
+<h3>Cleanup<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Feel free to close the text file we created. To clean up we can remove it from your computer by going back to terminal and typing the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="o">-</span><span class="n">i</span> <span class="n">Example_Fasta</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="Lesson1.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Lesson 1: Basic Command Line Skills</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="Lesson3.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Lesson 3: Git and GitHub</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By David A. Gold<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

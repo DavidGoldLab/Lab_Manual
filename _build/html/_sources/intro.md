@@ -19,3 +19,7 @@ I strongly recommend preparing a "cheat sheet" with the things you learned. Try 
 ```
 
 -Dr. Gold
+
+```python
+
+```

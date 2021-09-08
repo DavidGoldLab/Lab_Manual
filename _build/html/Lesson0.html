@@ -1,0 +1,523 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 0: Configuring your computer &#8212; Gold Lab Training Manual</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lesson 1: Basic Command Line Skills" href="Lesson1.html" />
+    <link rel="prev" title="Welcome" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Gold Lab Training Manual</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Lesson 0: Configuring your computer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lesson1.html">
+   Lesson 1: Basic Command Line Skills
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lesson2.html">
+   Lesson 2: Manipulating Text with Grep and Sed
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lesson3.html">
+   Lesson 3: Git and GitHub
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lesson4.html">
+   Lesson 4: Finding Homologous Genes with BLAST
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lesson5.html">
+   Lesson 5: Extracting Genes and Making Alignments
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Lesson0.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FLesson0.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#first-things-first">
+   0.1. First things first
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#find-your-terminal-application">
+   0.2. Find your Terminal application
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-xcode-mac-only">
+   0.3. Install XCode (Mac Only)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-homebrew">
+   0.4. Install Homebrew
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#homebrew-basics">
+     0.4.1. Homebrew basics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tapping-a-repository">
+     0.4.2. Tapping a repository
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-couple-other-good-commands-for-homebrew">
+     0.4.3. A couple other good commands for Homebrew
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-python-3">
+   0.5. Install Python 3
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#download-a-text-editor">
+   0.6. Download a text editor
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-git">
+   0.7. Install Git
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="lesson-0-configuring-your-computer">
+<h1>Lesson 0: Configuring your computer<a class="headerlink" href="#lesson-0-configuring-your-computer" title="Permalink to this headline">¶</a></h1>
+<p>(in 7 easy steps)</p>
+<p>© David Gold. Except where the source is noted, this work is licensed under a <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License CC-BY 4.0</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Following protocol assumes you are using a Mac (i.e. Unix). Things will be a little different if you are using a computer running Linux or Windows operating systems.</p>
+</div>
+<div class="alert alert-block alert-info">
+Recommendations for those using Windows/Linux users will appear in blue boxes like this.
+</div>
+<div class="section" id="first-things-first">
+<h2>0.1. First things first<a class="headerlink" href="#first-things-first" title="Permalink to this headline">¶</a></h2>
+<p>Make sure your computer’s operating system is up to date! This might take a while but it’s worth it.</p>
+</div>
+<div class="section" id="find-your-terminal-application">
+<h2>0.2. Find your Terminal application<a class="headerlink" href="#find-your-terminal-application" title="Permalink to this headline">¶</a></h2>
+<p>Press <code class="docutils literal notranslate"><span class="pre">Command</span></code> + <code class="docutils literal notranslate"><span class="pre">spacebar</span></code> to launch Spotlight. Type “Terminal” into the search bar, and then double-click the top search result. You could also search for Terminal using Mac’s Finder application.</p>
+<p>You will want easy access to Terminal in the future. Right-click the Terminal icon on your dock and select <code class="docutils literal notranslate"><span class="pre">Options</span> <span class="pre">&gt;</span> <span class="pre">Keep</span> <span class="pre">in</span> <span class="pre">Dock</span></code></p>
+<div class="alert alert-block alert-info">
+The "Windows Subsystem for Linux" lets you run a Linux Terminal on Windows. There is a tutorial for installing the subsystem at https://docs.microsoft.com/en-us/windows/wsl/install-win10. I am currently using WSL 1 and the "Ubuntu 18.04 LTS" Distribution on my PC.
+<p>You will need to locate your PowerShell program to install Windows Subsystem for Linux. You can find it by typing “PowerShell” into your computer’s search bar.</div></p>
+</div>
+<div class="section" id="install-xcode-mac-only">
+<h2>0.3. Install XCode (Mac Only)<a class="headerlink" href="#install-xcode-mac-only" title="Permalink to this headline">¶</a></h2>
+<p>Xcode provides a suite of development tools and libraries produced by Apple. Xcode’s <strong>Command Line Tools</strong> are particularly important as they include the GCC (GNU Compiler Collection) compiler, which is required by many of the programs we use.</p>
+<p>You can either download <a class="reference external" href="https://developer.apple.com/xcode/">XCode</a> from the Apple App Store or install the command line tools directly by pasting the following command into Terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xcode</span><span class="o">-</span><span class="n">select</span> <span class="o">--</span><span class="n">install</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-homebrew">
+<h2>0.4. Install Homebrew<a class="headerlink" href="#install-homebrew" title="Permalink to this headline">¶</a></h2>
+<p>In this lab we will be using lots of different <strong>packages</strong>, or archives that contain computer software. Packages can range from executable files, which you are probably familiar with (e.g. icons that say “click here to install”) to source code written in a variety of computer languages. These source code-based packages often require <strong>dependencies</strong>, or other packages needed for proper implementation. It can all be a little overwhelming, even for those familiar with coding.</p>
+<p>Fortunately there are <strong>package managers</strong> that automate the process of installing, configuring, and upgrading computer programs. In this lab we will be using <a class="reference external" href="https://brew.sh">Homebrew</a>. Install it by pasting the following in your Terminal.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)&quot;</span>
+</pre></div>
+</div>
+<p>Follow the instructions provided by Homebrew. You might run into errors or warnings during the installation, but Homebrew is well documented and will probably tell you what to do if you run into trouble. Read the output from Homebrew carefully!</p>
+<div class="section" id="homebrew-basics">
+<h3>0.4.1. Homebrew basics<a class="headerlink" href="#homebrew-basics" title="Permalink to this headline">¶</a></h3>
+<p>With Homebrew you can search for and install packages developed by other programmers. Homebrew is accessed in Terminal by invoking the <code class="docutils literal notranslate"><span class="pre">brew</span></code> command.</p>
+<div class="alert alert-block alert-info">
+<b>Homebrew syntax : </b> brew [verb] [options]
+</div>
+<p>Let’s try to <code class="docutils literal notranslate"><span class="pre">search</span></code> for the program wget:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">search</span> <span class="n">wget</span>
+</pre></div>
+</div>
+<p>Terminal should return something like the following:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>==&gt; Formulae
+wget                                   wgetpaste
+</pre></div>
+</div>
+<p>Homebrew found two possible programs, “wget” and “wgetpaste”. We want to <code class="docutils literal notranslate"><span class="pre">install</span></code> wget, and we can do that with the following command in Terminal.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">install</span> <span class="n">wget</span>
+</pre></div>
+</div>
+<p>If you want to find out where wget exists on your computer, use the <code class="docutils literal notranslate"><span class="pre">info</span></code> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">info</span> <span class="n">wget</span>
+</pre></div>
+</div>
+<p>You should get the following as part of the output:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>wget: stable 1.20.3 (bottled), HEAD
+Internet file retriever
+https://www.gnu.org/software/wget/
+/usr/local/Cellar/wget/1.19.5 (50 files, 3.7MB) *
+      Poured from bottle on 2018-09-13 at 20:07:35
+From: https://github.com/Homebrew/homebrew-core/blob/master/Formula/wget.rb
+</pre></div>
+</div>
+<p>The part that says <code class="docutils literal notranslate"><span class="pre">/usr/local/Cellar/wget/1.19.5</span></code> shows you the <strong>path</strong> to your program. The path is where a file or folder is stored on your computer. It lists all of the parent directories, separated by slashes (<code class="docutils literal notranslate"><span class="pre">/</span></code>). We will talk more about paths in the next lesson.</p>
+</div>
+<div class="section" id="tapping-a-repository">
+<h3>0.4.2. Tapping a repository<a class="headerlink" href="#tapping-a-repository" title="Permalink to this headline">¶</a></h3>
+<p>Some programs you want to download may be in repositories (“kegs”) that you can “tap” to access (Homebrew is full of brewing puns 🙄). Many programs scientists like to use are part of Brewsci. You can use the <code class="docutils literal notranslate"><span class="pre">tap</span></code> command to gain access to the Brewsci repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">tap</span> <span class="n">brewsci</span><span class="o">/</span><span class="n">bio</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="a-couple-other-good-commands-for-homebrew">
+<h3>0.4.3. A couple other good commands for Homebrew<a class="headerlink" href="#a-couple-other-good-commands-for-homebrew" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">List</span></code> all of the programs you have installed with Homebrew:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="nb">list</span>
+</pre></div>
+</div>
+<p>You can even look for things you have installed using grep (Global regular expression print; we’ll talk more about grep later). <strong>Make sure to replace ‘[PROGRAM_NAME]’ with the name of the program!</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="nb">list</span> <span class="o">|</span> <span class="n">grep</span> <span class="p">[</span><span class="n">PROGRAM_NAME</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Update</span></code> all of the programs in Homebrew:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">update</span>
+</pre></div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">rm</span></code> to remove a program <strong>(again, replace ‘[PROGRAM_NAME]’ with the actual name of the program)</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">rm</span> <span class="p">[</span><span class="n">PROGRAM_NAME</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="install-python-3">
+<h2>0.5. Install Python 3<a class="headerlink" href="#install-python-3" title="Permalink to this headline">¶</a></h2>
+<p>Mac operating systems (OSX) come preinstalled with Python 2.7. Some programs require Python 2, But it is quickly being replaced with Python 3 (it will be no longer be updated by the developers in 2020). So let’s make sure you are working with the latest version!</p>
+<p>First, install Python 3 with Homebrew:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">install</span> <span class="n">python</span>
+</pre></div>
+</div>
+<p>Python 2 still exists on your computer. It might be important for certain programs. If you ever get an error message while working with Python, one of the first things to check is what version of Python are you working with, and what version of Python your program requires.</p>
+<p>Let’s set Python 3 as our default version of Python:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alias</span> <span class="n">python</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">python3</span>
+</pre></div>
+</div>
+<p>Now double-check which version of Python is your default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+<p>You should get a version of Python 3:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Python 3.7.4
+</pre></div>
+</div>
+<p>Python uses a program called ‘Pip’ to install packages. Make sure you are using the right version of Pip as well:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Pip</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+<p>You should get a response like this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pip 19.3 from /usr/local/lib/python3.7/site-packages/pip (python 3.7)
+</pre></div>
+</div>
+<p>Note the reference to Python 3 at the end.</p>
+<p>You can now access Python 3 by calling the program:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span>
+</pre></div>
+</div>
+<p>You will be able to tell that you are in Python because the ‘$’ starting every line in Terminal (which indicates you’re in the BASH environment) is now replaced with ‘&gt;&gt;&gt;’ (which indicates you’re in the Python environment).</p>
+<p>We will discuss working in Python later in the course. For now you can quit Python using the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">quit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="download-a-text-editor">
+<h2>0.6. Download a text editor<a class="headerlink" href="#download-a-text-editor" title="Permalink to this headline">¶</a></h2>
+<p>A <strong>text editor</strong> is a type of computer program that manipulates <strong>plain text</strong>. This is distinct from a word processor (Such as Microsoft Word) which edits rich text. Rich text contains all sorts of additional metadata, such as font size and style, paragraph formatting, and page margin settings. You will need a text editor to develop code.</p>
+<p>Two common text editors are <a class="reference external" href="http://www.barebones.com/products/bbedit/">BBEdit</a> and <a class="reference external" href="https://www.sublimetext.com">Sublime Text</a>. I use BBEdit. The program starts in “trial” mode for ~14 days; let the clock run out and it will switch to “free” mode. Free mode has fewer abilities but it is more than capable of handling anything being done in our lab.</p>
+<div class="alert alert-block alert-info">
+BBEdit is not available on Windows. A commonly-used alternative is Notepad++ (https://notepad-plus-plus.org/)
+</div>
+<p><strong>A couple of things to do after you install BBEdit</strong></p>
+<ol class="simple">
+<li><p>Make sure to activate BBEdit’s connection to Xcode by opening BBEdit and then selecting <code class="docutils literal notranslate"><span class="pre">BBEdit</span> <span class="pre">&gt;</span> <span class="pre">&quot;Install</span> <span class="pre">Command</span> <span class="pre">Line</span> <span class="pre">Tools&quot;</span></code> in the menu.</p></li>
+<li><p>Make sure BBEdit is saving files in the “Unix (LF)” format. You can check the format at the bottom of the BBEdit window. See the picture below for an example:</p></li>
+</ol>
+<p><img alt="Alt text" src="_images/0_BBedit.png" /></p>
+</div>
+<div class="section" id="install-git">
+<h2>0.7. Install Git<a class="headerlink" href="#install-git" title="Permalink to this headline">¶</a></h2>
+<p>There are several ways to install Git on a Mac:</p>
+<ol class="simple">
+<li><p>It should have been included when you installed the Xcode Command Line Tools. To check, paste the following prompt into Terminal:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+<p>If you don’t have it installed already, this command will prompt you to install it.</p>
+<ol class="simple">
+<li><p>You can install it via Homebrew:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">install</span> <span class="n">git</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>You could use a binary installer. Git installers are maintained and available for download at the <a class="reference external" href="https://git-scm.com/download/mac">Git website</a></p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="intro.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Welcome</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="Lesson1.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Lesson 1: Basic Command Line Skills</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By David A. Gold<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

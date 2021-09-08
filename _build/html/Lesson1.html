@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 1: Basic Command Line Skills &#8212; Gold Lab Training Manual</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lesson 2: Manipulating Text with Grep and Sed" href="Lesson2.html" />
+    <link rel="prev" title="Lesson 0: Configuring your computer" href="Lesson0.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Gold Lab Training Manual</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lesson0.html">
+   Lesson 0: Configuring your computer
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Lesson 1: Basic Command Line Skills
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lesson2.html">
+   Lesson 2: Manipulating Text with Grep and Sed
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lesson3.html">
+   Lesson 3: Git and GitHub
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lesson4.html">
+   Lesson 4: Finding Homologous Genes with BLAST
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lesson5.html">
+   Lesson 5: Extracting Genes and Making Alignments
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Lesson1.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FLesson1.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-started-with-the-command-line">
+   1.1. Getting started with the command line
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#navigating-around-directories">
+   1.2. Navigating around directories
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#changing-directories">
+   1.3. Changing directories
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#view-your-working-directory-in-finder">
+   1.4. View your working directory in Finder
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#making-and-removing-directories">
+   1.5. Making and removing directories
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#making-directories">
+     1.5.1. Making directories
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#removing-empty-directories">
+     1.5.2. Removing (empty) directories
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-and-viewing-text-files">
+   1.6. Creating and viewing text files
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#making-a-text-file-with-nano">
+     1.6.1. Making a text file with nano
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#viewing-text-files">
+     1.6.2. Viewing text files
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#moving-and-renaming-files">
+   1.7. Moving and renaming files
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#removing-files-and-directories">
+   1.8. Removing files and directories
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   1.9. Conclusion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix-command-line-cheat-sheet">
+   Appendix: Command Line Cheat Sheet
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#file-management">
+     FILE MANAGEMENT
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#directory-management">
+     DIRECTORY MANAGEMENT
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pipes-combine-multiple-commands-that-generate-output">
+     PIPES (Combine multiple commands that generate output)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#help">
+     HELP
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="lesson-1-basic-command-line-skills">
+<h1>Lesson 1: Basic Command Line Skills<a class="headerlink" href="#lesson-1-basic-command-line-skills" title="Permalink to this headline">¶</a></h1>
+<p>© David Gold. Except where the source is noted, this work is licensed under a <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License CC-BY 4.0</a>.</p>
+<div class="section" id="getting-started-with-the-command-line">
+<h2>1.1. Getting started with the command line<a class="headerlink" href="#getting-started-with-the-command-line" title="Permalink to this headline">¶</a></h2>
+<p>Now, as you did in lesson 1, open up your Terminal application</p>
+</div>
+<div class="section" id="navigating-around-directories">
+<h2>1.2. Navigating around directories<a class="headerlink" href="#navigating-around-directories" title="Permalink to this headline">¶</a></h2>
+<p>When you click around the folders and subfolders of your computer, you are actually navigating <strong>directories</strong>. Directories are a hierarchical file system your computer uses to store and organize files.</p>
+<p>Let’s start by using the <code class="docutils literal notranslate"><span class="pre">pwd</span></code> <strong>(print working directory)</strong> command to figure out what directory we’re in. Type the following into terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pwd</span>
+</pre></div>
+</div>
+<p>You should get something like:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/Users/{Your_Computer_Username}
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">pwd</span></code> tells you the <strong>path</strong> of your current directory. The path shows where a file or folder is stored on your computer. The path lists all of the parent directories in the hierarchy, separated by slashes (<code class="docutils literal notranslate"><span class="pre">/</span></code>), all the way up to the root directory, which is signified by the initial <code class="docutils literal notranslate"><span class="pre">/</span></code>. When you start up Terminal you should be in your <strong>home directory</strong>.</p>
+<p>To list all files and folders in the current directory, we employ the <code class="docutils literal notranslate"><span class="pre">ls</span></code> <strong>(list)</strong> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="changing-directories">
+<h2>1.3. Changing directories<a class="headerlink" href="#changing-directories" title="Permalink to this headline">¶</a></h2>
+<p>Let’s move arond the computer using the <code class="docutils literal notranslate"><span class="pre">cd</span></code> <strong>(change directory)</strong> command. If you are in your home directory, you should se the “Desktop” folder when you use the <code class="docutils literal notranslate"><span class="pre">ls</span></code> command. This is because the “Desktop” is a subfolder in your home directory (in other words, your home directory is the <strong>parent directory</strong> and your desktop is the <strong>child directory</strong>).</p>
+<p>You can navigate to the Desktop using the <code class="docutils literal notranslate"><span class="pre">cd</span></code> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">Desktop</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Instead of typing out the whole name to a directory or file, try typing part of the name out and hitting the <code class="docutils literal notranslate"><span class="pre">tab</span></code> button. Assuming there are not multiple files and/or folders with the same start, Terminal will auto-fill the word based on the objects in your directory.</p>
+<p>In this case, typing “D” + “tab” will probably not work, because you probably have other folders that start with “D” (e.g. Downloads, Documents). But typing “D” + “e” + “tab” probably will work. You should get comfortable using tab to auto-fill names; it makes command line work much easier!</p>
+</div>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">ls</span></code> command again and you can see all of the files and folders currently on your desktop.</p>
+<p>Another way to specify your home directory is by its shortcut, <code class="docutils literal notranslate"><span class="pre">~</span></code>. So you can always go direclty to your home directory using the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>
+</pre></div>
+</div>
+<p>If you know the path to a folder, you can go directly to it using the <code class="docutils literal notranslate"><span class="pre">cd</span></code> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">Desktop</span>
+</pre></div>
+</div>
+<p>One last trick; you can use periods as a shortcut to move around directories. One period (<code class="docutils literal notranslate"><span class="pre">.</span></code>) signifies the folder you are in. Two periods (<code class="docutils literal notranslate"><span class="pre">..</span></code>) signifies the parent folder. So if you wanted to navigate up two directories you could do the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">../../</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="view-your-working-directory-in-finder">
+<h2>1.4. View your working directory in Finder<a class="headerlink" href="#view-your-working-directory-in-finder" title="Permalink to this headline">¶</a></h2>
+<p>Here is a nice trick if you want to “<strong>open</strong>” the directory in a more traditional “Finder” window:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">open</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>The period means that you want to open the current directory. You could open a different folder by providing its path.</p>
+</div>
+<div class="section" id="making-and-removing-directories">
+<h2>1.5. Making and removing directories<a class="headerlink" href="#making-and-removing-directories" title="Permalink to this headline">¶</a></h2>
+<p>Let’s start this exercise by making sure we are in the home directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>
+</pre></div>
+</div>
+<div class="section" id="making-directories">
+<h3>1.5.1. Making directories<a class="headerlink" href="#making-directories" title="Permalink to this headline">¶</a></h3>
+<p>To make a directory, the command is <code class="docutils literal notranslate"><span class="pre">mkdir</span></code> (<strong>make directory</strong>) followed by the name of the directory you want to create. For example, to make a directory called <code class="docutils literal notranslate"><span class="pre">test</span></code> type the following into Terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">test</span>
+</pre></div>
+</div>
+<p>You now have an empty directory called test. You can see it if you list the contents of your current working directory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span>
+</pre></div>
+</div>
+<p>You can move into this directory with the <code class="docutils literal notranslate"><span class="pre">cd</span></code> command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">test</span>
+</pre></div>
+</div>
+<p>Verify that you are in the correct directory by checking your path:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pwd</span>
+</pre></div>
+</div>
+<p>In response the computer should report a path that ends in “test”; for example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/Users/davidgold/test
+</pre></div>
+</div>
+<p>Let’s now move back into the parent directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">../</span>
+</pre></div>
+</div>
+<p>In the same way that one dot (<code class="docutils literal notranslate"><span class="pre">.</span></code>) represents the current directory (as mentioned in the <code class="docutils literal notranslate"><span class="pre">open</span> <span class="pre">.</span></code> command), two dots (<code class="docutils literal notranslate"><span class="pre">..</span></code>) means one directory up.</p>
+</div>
+<div class="section" id="removing-empty-directories">
+<h3>1.5.2. Removing (empty) directories<a class="headerlink" href="#removing-empty-directories" title="Permalink to this headline">¶</a></h3>
+<p>We do not need (nor want) this test directory, so let’s delete it. To delete an <em>empty</em> directory, the command is <code class="docutils literal notranslate"><span class="pre">rmdir</span></code> (__remove directory).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rmdir</span> <span class="n">test</span>
+</pre></div>
+</div>
+<p>To delete directories with files in them, you need the <code class="docutils literal notranslate"><span class="pre">rm</span></code> command (discussed later).</p>
+</div>
+</div>
+<div class="section" id="creating-and-viewing-text-files">
+<h2>1.6. Creating and viewing text files<a class="headerlink" href="#creating-and-viewing-text-files" title="Permalink to this headline">¶</a></h2>
+<p>For the next exercise, I want to start by making a folder and adding a text file to it:</p>
+<p>Make the “test2” directory with <code class="docutils literal notranslate"><span class="pre">mkdir</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">test2</span>
+</pre></div>
+</div>
+<p>Move into the “test2” directory with <code class="docutils literal notranslate"><span class="pre">cd</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">test2</span>
+</pre></div>
+</div>
+<div class="section" id="making-a-text-file-with-nano">
+<h3>1.6.1. Making a text file with nano<a class="headerlink" href="#making-a-text-file-with-nano" title="Permalink to this headline">¶</a></h3>
+<p>Now we’re going to use a new command called <code class="docutils literal notranslate"><span class="pre">nano</span></code>. <strong>Nano</strong> is a simple text-editor that you can acess from Terminal. You can open the text-editor by simply typing <code class="docutils literal notranslate"><span class="pre">nano</span></code> into terminal, or you can provide a filename for the text document you want to create:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="n">Textfile</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>This will open the Nano text-editor in Terminal. You can add any text you want, here’s an example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Hello world
+</pre></div>
+</div>
+<p>Once you’ve written some text, use the <code class="docutils literal notranslate"><span class="pre">command</span></code> + <code class="docutils literal notranslate"><span class="pre">x</span></code> keys to exit Nano. Nano will ask the following:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">modified</span> <span class="pre">buffer</span> <span class="pre">(ANSWERING</span> <span class="pre">&quot;No&quot;</span> <span class="pre">WILL</span> <span class="pre">DESTROY</span> <span class="pre">CHANGES)</span> <span class="pre">?</span></code></p>
+<p>Press the <code class="docutils literal notranslate"><span class="pre">y</span></code> key to save your file. Nano will then double-check what you want to name the file:</p>
+<p><code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">Name</span> <span class="pre">to</span> <span class="pre">Write:</span> <span class="pre">Textfile.txt</span></code></p>
+<p>If you never provided a file name, you will have the opporutnity to do so now. If you are happy with the file name, hit the <code class="docutils literal notranslate"><span class="pre">enter</span> <span class="pre">/</span> <span class="pre">return</span></code> key. This will take you back to the normal Terminal window.</p>
+<p>Verfiy that you now have a text file called “Textfile.txt” in your Test folder:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span>
+</pre></div>
+</div>
+<p>You should get “Textfile.txt” in response.</p>
+</div>
+<div class="section" id="viewing-text-files">
+<h3>1.6.2. Viewing text files<a class="headerlink" href="#viewing-text-files" title="Permalink to this headline">¶</a></h3>
+<p>You can use terminal to look at the contents of a text file without opening it. Copy the command below and paste it into Terminal to create a new file called “File2.txt”</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;1</span><span class="se">\n</span><span class="s1">2</span><span class="se">\n</span><span class="s1">3</span><span class="se">\n</span><span class="s1">4</span><span class="se">\n</span><span class="s1">5</span><span class="se">\n</span><span class="s1">6</span><span class="se">\n</span><span class="s1">7</span><span class="se">\n</span><span class="s1">8</span><span class="se">\n</span><span class="s1">9</span><span class="se">\n</span><span class="s1">10</span><span class="se">\n</span><span class="s1">11</span><span class="se">\n</span><span class="s1">12</span><span class="se">\n</span><span class="s1">13</span><span class="se">\n</span><span class="s1">14</span><span class="se">\n</span><span class="s1">15</span><span class="se">\n</span><span class="s1">16</span><span class="se">\n</span><span class="s1">17</span><span class="se">\n</span><span class="s1">18</span><span class="se">\n</span><span class="s1">19</span><span class="se">\n</span><span class="s1">20&#39;</span> <span class="o">&gt;</span> <span class="n">File2</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>File2.txt is 20 lines long, containing one number on each line.</p>
+<p>To quickly see the first ten lines of this file, you can use the <code class="docutils literal notranslate"><span class="pre">head</span></code> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">head</span> <span class="n">File2</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>It will report the first ten lines, which contain the numbers 1 through 10:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></div>
+</div>
+<p>To quickly see the last ten lines of this file, you can use the <code class="docutils literal notranslate"><span class="pre">tail</span></code> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tail</span> <span class="n">File2</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>It will report the last ten lines, which contain the numbers 11 through 20:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></div>
+</div>
+<p>By defauly, <code class="docutils literal notranslate"><span class="pre">head</span></code> and <code class="docutils literal notranslate"><span class="pre">tail</span></code> report ten lines. You can change that number with the <code class="docutils literal notranslate"><span class="pre">-n</span></code> flag:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">head</span> <span class="o">-</span><span class="n">n</span> <span class="mi">18</span> <span class="n">File2</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>The above command will report the first 18 lines of the document.</p>
+</div>
+</div>
+<div class="section" id="moving-and-renaming-files">
+<h2>1.7. Moving and renaming files<a class="headerlink" href="#moving-and-renaming-files" title="Permalink to this headline">¶</a></h2>
+<p>Let’s return to our original text file (“Textfile.txt”). You can rename it using the <code class="docutils literal notranslate"><span class="pre">mv</span></code> (<strong>move</strong>) command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mv</span> <span class="n">Textfile</span><span class="o">.</span><span class="n">txt</span> <span class="n">Newfile</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">ls</span></code> command again and you should see “Newfile.txt” instead of “Textfile.txt”</p>
+<p>You can also move the file (with or without changing the file name) using this command.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mv</span> <span class="n">Newfile</span><span class="o">.</span><span class="n">txt</span> <span class="o">~/</span><span class="n">Desktop</span><span class="o">/</span><span class="n">Newfile</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="removing-files-and-directories">
+<h2>1.8. Removing files and directories<a class="headerlink" href="#removing-files-and-directories" title="Permalink to this headline">¶</a></h2>
+<p>You have learned some good skills, but now you have some junk spread all over your computer, including a text file on your desktop (“~/Desktop/Newfile.txt”), and a folder (“~/Test”).</p>
+<p>You can delete files and folders from your computer using the <code class="docutils literal notranslate"><span class="pre">rm</span></code> command.</p>
+<div class="alert alert-block alert-danger">
+<b>Warning: objects deleted with rm cannot be recovered!</b> They are gone forever, and slight mistakes (like adding a poorly placed space to a file name) could result in the destruction of lots of files. You might even ruin your computer's operating system if you're in the wrong folder. 
+</div>
+<p>Because of this risk, I recommend that you always inclue the <code class="docutils literal notranslate"><span class="pre">-i</span></code> flag when running <code class="docutils literal notranslate"><span class="pre">rm</span></code>; this calls the “interactive mode”, meaning terminal will double-check with you before removing objects.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="o">-</span><span class="n">i</span> <span class="o">~/</span><span class="n">Desktop</span><span class="o">/</span><span class="n">Newfile</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>If you try deleting the folder in the same way it will not work:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="o">-</span><span class="n">i</span> <span class="o">~/</span><span class="n">Test</span>
+</pre></div>
+</div>
+<p>You will get an error message saying the path <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">a</span> <span class="pre">directory</span></code>. By default folders with files in them cannot be deleted unless you add the <code class="docutils literal notranslate"><span class="pre">-r</span></code> (<strong>recursive</strong>) flag. Recursive mode specifies that you want to delete the folder and all of the files/subfolders within the folder:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="o">-</span><span class="n">ir</span> <span class="o">~/</span><span class="n">Test</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h2>1.9. Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>That is enough for this lesson. There are many other commands that can be used to navigate around your computer using Terminal. I’ve put together a cheat sheet below for reference:</p>
+</div>
+<div class="section" id="appendix-command-line-cheat-sheet">
+<h2>Appendix: Command Line Cheat Sheet<a class="headerlink" href="#appendix-command-line-cheat-sheet" title="Permalink to this headline">¶</a></h2>
+<p>(adapted from <a class="reference external" href="https://gist.github.com/poopsplat/7195274#file-gistfile1-textile">https://gist.github.com/poopsplat/7195274#file-gistfile1-textile</a>)CORE</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>command</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>cd</p></td>
+<td><p>Home directory</p></td>
+</tr>
+<tr class="row-odd"><td><p>cd [folder]</p></td>
+<td><p>Change directory</p></td>
+</tr>
+<tr class="row-even"><td><p>cd ~</p></td>
+<td><p>Home directory, e.g. ‘cd ~/folder/’</p></td>
+</tr>
+<tr class="row-odd"><td><p>cd /</p></td>
+<td><p>Root of drive</p></td>
+</tr>
+<tr class="row-even"><td><p>ls</p></td>
+<td><p>Short listing</p></td>
+</tr>
+<tr class="row-odd"><td><p>ls -l</p></td>
+<td><p>Long listing</p></td>
+</tr>
+<tr class="row-even"><td><p>ls -a</p></td>
+<td><p>Listing incl. hidden files</p></td>
+</tr>
+<tr class="row-odd"><td><p>ls -lh</p></td>
+<td><p>Long listing with Human readable file sizes</p></td>
+</tr>
+<tr class="row-even"><td><p>ls -R</p></td>
+<td><p>Entire content of folder recursively</p></td>
+</tr>
+<tr class="row-odd"><td><p>sudo [command]</p></td>
+<td><p>Run command with the security privileges of the superuser (Super User DO)</p></td>
+</tr>
+<tr class="row-even"><td><p>open [file]</p></td>
+<td><p>Opens a file</p></td>
+</tr>
+<tr class="row-odd"><td><p>open .</p></td>
+<td><p>Opens the directory</p></td>
+</tr>
+<tr class="row-even"><td><p>top</p></td>
+<td><p>Displays active processes. Press q to quit</p></td>
+</tr>
+<tr class="row-odd"><td><p>nano [file]</p></td>
+<td><p>Opens the Terminal it’s editor</p></td>
+</tr>
+<tr class="row-even"><td><p>pico	[file]</p></td>
+<td><p>Opens the Terminal it’s editor</p></td>
+</tr>
+<tr class="row-odd"><td><p>q</p></td>
+<td><p>Exit</p></td>
+</tr>
+<tr class="row-even"><td><p>clear</p></td>
+<td><p>Clear screen</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="file-management">
+<h3>FILE MANAGEMENT<a class="headerlink" href="#file-management" title="Permalink to this headline">¶</a></h3>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>command</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>touch [file]</p></td>
+<td><p>Create new file</p></td>
+</tr>
+<tr class="row-odd"><td><p>pwd</p></td>
+<td><p>Full path to working directory</p></td>
+</tr>
+<tr class="row-even"><td><p>..</p></td>
+<td><p>Parent/enclosing directory, e.g.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ls -l ..</p></td>
+<td><p>Long listing of parent directory</p></td>
+</tr>
+<tr class="row-even"><td><p>cd ../../</p></td>
+<td><p>Move 2 levels up</p></td>
+</tr>
+<tr class="row-odd"><td><p>.</p></td>
+<td><p>Current folder</p></td>
+</tr>
+<tr class="row-even"><td><p>cat</p></td>
+<td><p>Concatenate to screen</p></td>
+</tr>
+<tr class="row-odd"><td><p>rm [file]</p></td>
+<td><p>Remove a file, e.g. rm [file] [file]</p></td>
+</tr>
+<tr class="row-even"><td><p>rm -i [file]</p></td>
+<td><p>Remove with confirmation</p></td>
+</tr>
+<tr class="row-odd"><td><p>rm -r [dir]</p></td>
+<td><p>Remove a directory and contents</p></td>
+</tr>
+<tr class="row-even"><td><p>rm -f [file]</p></td>
+<td><p>Force removal without confirmation</p></td>
+</tr>
+<tr class="row-odd"><td><p>rm -i [file]</p></td>
+<td><p>Will display prompt before</p></td>
+</tr>
+<tr class="row-even"><td><p>cp [file] [newfile]</p></td>
+<td><p>Copy file to file</p></td>
+</tr>
+<tr class="row-odd"><td><p>cp [file] [dir]</p></td>
+<td><p>Copy file to directory</p></td>
+</tr>
+<tr class="row-even"><td><p>mv [file] [new filename]</p></td>
+<td><p>Move/Rename, e.g. mv -v [file] [dir]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="directory-management">
+<h3>DIRECTORY MANAGEMENT<a class="headerlink" href="#directory-management" title="Permalink to this headline">¶</a></h3>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>command</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>mkdir [dir]</p></td>
+<td><p>Create new directory</p></td>
+</tr>
+<tr class="row-odd"><td><p>mkdir -p [dir]/[dir]</p></td>
+<td><p>Create nested directories</p></td>
+</tr>
+<tr class="row-even"><td><p>rmdir [dir]</p></td>
+<td><p>Remove directory ( only operates on empty directories )</p></td>
+</tr>
+<tr class="row-odd"><td><p>rm -R [dir]</p></td>
+<td><p>Remove directory and contents</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="pipes-combine-multiple-commands-that-generate-output">
+<h3>PIPES (Combine multiple commands that generate output)<a class="headerlink" href="#pipes-combine-multiple-commands-that-generate-output" title="Permalink to this headline">¶</a></h3>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>command</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>more</p></td>
+<td><p>Output content delivered in screensize chunks</p></td>
+</tr>
+<tr class="row-odd"><td><p>&gt; [file]</p></td>
+<td><p>Push output to file, keep in mind it will get overwritten</p></td>
+</tr>
+<tr class="row-even"><td><p>&gt;&gt; [file]</p></td>
+<td><p>Append output to existing file</p></td>
+</tr>
+<tr class="row-odd"><td><p>&lt;</p></td>
+<td><p>Tell command to read content from a file</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="help">
+<h3>HELP<a class="headerlink" href="#help" title="Permalink to this headline">¶</a></h3>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>command</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>[command] -h</p></td>
+<td><p>Offers help</p></td>
+</tr>
+<tr class="row-odd"><td><p>[command] –help</p></td>
+<td><p>Offers help</p></td>
+</tr>
+<tr class="row-even"><td><p>[command] help</p></td>
+<td><p>Offers help</p></td>
+</tr>
+<tr class="row-odd"><td><p>reset</p></td>
+<td><p>Resets the terminal display</p></td>
+</tr>
+<tr class="row-even"><td><p>man [command]</p></td>
+<td><p>Show the help for ‘command’</p></td>
+</tr>
+<tr class="row-odd"><td><p>whatis [command]</p></td>
+<td><p>Gives a one-line description of ‘command’</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="Lesson0.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Lesson 0: Configuring your computer</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="Lesson2.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Lesson 2: Manipulating Text with Grep and Sed</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By David A. Gold<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
