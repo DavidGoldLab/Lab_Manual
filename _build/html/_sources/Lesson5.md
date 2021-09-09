@@ -49,7 +49,7 @@ This is what the header IDs mean:
 
 ## 5.1. Introducing Samtools
 
-As a reminder, one of our query sequences (Ectocarpus_siliculosus_CBN76684.1_Sterol_methyltransferase) had a single match in the yeast database (sp|P25087|ERG6_YEAST_Sterol_24-C-methyltransferase). If we want to see what this match looks like, we could open the relevant fasta file in BBEdit and search for it, but that won't work with very large fasta files. Instead we will use a program called [__Samtools__](http://www.htslib.org/). Samtools is primarily used for manipulating SAM and BAM files, a common format for high-throughput sequencing data. But Samtools has some useful functions for working with fasta files more broadly.
+As a reminder, one of our query sequences (Ectocarpus_siliculosus_CBN76684.1_Sterol_methyltransferase) had a single match in the yeast database (sp|P25087|ERG6_YEAST_Sterol_24-C-methyltransferase). If we want to see what this match looks like, we could open the relevant fasta file in BBEdit and search for it, but that won't work with very large fasta files. Instead we will use a program called [__Samtools__](http://www.htslib.org/). 
 
 We can install Samtools with Homebrew:
 
@@ -66,6 +66,10 @@ samtools faidx Lesson_4_Yeast_Proteome.fasta
 ```
 
 There is now an index file (Lesson_4_Yeast_Proteome.fasta.fai) added to your folder. Indexing allows Samtools to easily navigate fasta files of any size.
+
+```{warning}
+The sequence IDs of the fasta file and the index (fai) file have to match. If you change any sequence IDs in the fasta file after running `samtools faidx` the two files will no longer match and you will get an error. If you decide to change any sequence IDs in your original fasta file, make sure to delete the associated index file and then re-run the `samtools faidx` command.
+```
 
 To extract the gene we found with BLAST, we also use the `faidx` command. But this time we add the name of the sequence we're interested in. __Make sure to wrap the name in quotes so Terminal does not try to interpret characters in the sequence name as regular expressions__:
 
@@ -436,3 +440,7 @@ git commit -m 'performed samtools exercise'
 git push
 ```
 <!-- #endregion -->
+
+```python
+
+```

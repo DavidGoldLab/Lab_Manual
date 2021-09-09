@@ -27,7 +27,7 @@ Recommendations for those using Windows/Linux users will appear in blue boxes li
 
 ## 0.1. First things first
 
-Make sure your computer's operating system is up to date! This might take a while but it's worth it.
+Make sure your computer's operating system is up to date! This might take a while but it will make the rest of the setup much easier.
 
 ## 0.2. Find your Terminal application
 
@@ -36,9 +36,9 @@ Press `Command` + `spacebar` to launch Spotlight. Type "Terminal" into the searc
 You will want easy access to Terminal in the future. Right-click the Terminal icon on your dock and select `Options > Keep in Dock`
 
 <div class="alert alert-block alert-info">
-The "Windows Subsystem for Linux" lets you run a Linux Terminal on Windows. There is a tutorial for installing the subsystem at https://docs.microsoft.com/en-us/windows/wsl/install-win10. I am currently using WSL 1 and the "Ubuntu 18.04 LTS" Distribution on my PC.
-    
-You will need to locate your PowerShell program to install Windows Subsystem for Linux. You can find it by typing "PowerShell" into your computer's search bar.</div>
+The "Windows Subsystem for Linux" lets you run a Linux Terminal on Windows.
+
+There is a tutorial for installing it at https://docs.microsoft.com/en-us/windows/wsl/install-win10. I am currently using WSL 1 and the "Ubuntu 18.04 LTS" Distribution on my PC. You will need to locate your PowerShell program to install Windows Subsystem for Linux. You can find it by typing "PowerShell" into your computer's search bar.</div>
 
 ## 0.3. Install XCode (Mac Only)
 
@@ -67,14 +67,16 @@ Follow the instructions provided by Homebrew. You might run into errors or warni
 With Homebrew you can search for and install packages developed by other programmers. Homebrew is accessed in Terminal by invoking the `brew` command.
 
 <div class="alert alert-block alert-info">
-<b>Homebrew syntax : </b> brew [verb] [options]
+<b>Homebrew syntax : </b>
+
+brew [verb] [options]
 </div>
 
 Let's try to `search` for the program wget:
 
-````
+```
 brew search wget
-````
+```
 
 Terminal should return something like the following:
 
@@ -83,15 +85,15 @@ Terminal should return something like the following:
 
 Homebrew found two possible programs, "wget" and "wgetpaste". We want to `install` wget, and we can do that with the following command in Terminal.
 
-````
+```
 brew install wget
-````
+```
 
 If you want to find out where wget exists on your computer, use the `info` command: 
 
-````
+```
 brew info wget
-````
+```
 
 You should get the following as part of the output:
 
@@ -109,35 +111,35 @@ The part that says `/usr/local/Cellar/wget/1.19.5` shows you the __path__ to you
 
 Some programs you want to download may be in repositories ("kegs") that you can "tap" to access (Homebrew is full of brewing puns 🙄). Many programs scientists like to use are part of Brewsci. You can use the `tap` command to gain access to the Brewsci repository:
 
-````
+```
 brew tap brewsci/bio
-````
+```
 
 ### 0.4.3. A couple other good commands for Homebrew
 
 `List` all of the programs you have installed with Homebrew:
 
-````
+```
 brew list
-````
+```
 
 You can even look for things you have installed using grep (Global regular expression print; we'll talk more about grep later). __Make sure to replace '[PROGRAM_NAME]' with the name of the program!__
 
-````
+```
 brew list | grep [PROGRAM_NAME]
-````
+```
 
 `Update` all of the programs in Homebrew:
 
-````
+```
 brew update
-````
+```
 
 Use `rm` to remove a program __(again, replace '[PROGRAM_NAME]' with the actual name of the program)__:
 
-````
+```
 brew rm [PROGRAM_NAME]
-````
+```
 
 ## 0.5. Install Python 3
 
@@ -145,23 +147,23 @@ Mac operating systems (OSX) come preinstalled with Python 2.7. Some programs req
 
 First, install Python 3 with Homebrew:
 
-````
+```
 brew install python
-````
+```
 
 Python 2 still exists on your computer. It might be important for certain programs. If you ever get an error message while working with Python, one of the first things to check is what version of Python are you working with, and what version of Python your program requires.
 
 Let's set Python 3 as our default version of Python:
 
-````
+```
 alias python=/usr/local/bin/python3
-````
+```
 
 Now double-check which version of Python is your default:
 
-````
+```
 python --version
-````
+```
 
 You should get a version of Python 3:
 
@@ -169,9 +171,9 @@ You should get a version of Python 3:
     
 Python uses a program called 'Pip' to install packages. Make sure you are using the right version of Pip as well:
 
-````
+```
 Pip --version
-````
+```
 
 You should get a response like this:
 
@@ -181,17 +183,17 @@ Note the reference to Python 3 at the end.
 
 You can now access Python 3 by calling the program:
 
-````
+```
 python
-````
+```
 
 You will be able to tell that you are in Python because the '$' starting every line in Terminal (which indicates you're in the BASH environment) is now replaced with '>>>' (which indicates you're in the Python environment).
 
 We will discuss working in Python later in the course. For now you can quit Python using the following command:
 
-````
+```
 quit()
-````
+```
 
 ## 0.6. Download a text editor
 
@@ -200,7 +202,9 @@ A __text editor__ is a type of computer program that manipulates __plain text__.
 Two common text editors are [BBEdit](http://www.barebones.com/products/bbedit/) and [Sublime Text](https://www.sublimetext.com). I use BBEdit. The program starts in "trial" mode for ~14 days; let the clock run out and it will switch to "free" mode. Free mode has fewer abilities but it is more than capable of handling anything being done in our lab.
 
 <div class="alert alert-block alert-info">
-BBEdit is not available on Windows. A commonly-used alternative is Notepad++ (https://notepad-plus-plus.org/)
+BBEdit is not available on Windows.
+
+A commonly-used alternative is Notepad++ (https://notepad-plus-plus.org/)
 </div>
 
 __A couple of things to do after you install BBEdit__
@@ -217,20 +221,16 @@ There are several ways to install Git on a Mac:
 
 1) It should have been included when you installed the Xcode Command Line Tools. To check, paste the following prompt into Terminal:
 
-````
+```
 git --version
-````
+```
 
 If you don’t have it installed already, this command will prompt you to install it.
 
 2) You can install it via Homebrew:
 
-````
+```
 brew install git
-````
+```
 
 3) You could use a binary installer. Git installers are maintained and available for download at the [Git website](https://git-scm.com/download/mac)
-
-```python
-
-```

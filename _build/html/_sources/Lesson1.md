@@ -282,7 +282,6 @@ That is enough for this lesson. There are many other commands that can be used t
 
 
 ## Appendix: Command Line Cheat Sheet
-(adapted from https://gist.github.com/poopsplat/7195274#file-gistfile1-textile)CORE 
 
 |command|description|
 |-----|-----|
