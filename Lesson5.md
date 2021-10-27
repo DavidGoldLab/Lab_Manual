@@ -59,7 +59,7 @@ brew install samtools
 
 ## 5.2. Retrieving genetic data with Samtools
 
-Before we can extract data from a fasta file using Samtools, we need to __index__ the file. We can do that with Samtools' `faidx` command:
+Before we can extract data from a fasta file using Samtools, we need to __index__ the file. Indexing a file cretes a database (called an __index file__) which greatly improves lookup speeds. We can do that with Samtools' `faidx` command:
 
 ```
 samtools faidx Lesson_4_Yeast_Proteome.fasta
@@ -68,7 +68,7 @@ samtools faidx Lesson_4_Yeast_Proteome.fasta
 There is now an index file (Lesson_4_Yeast_Proteome.fasta.fai) added to your folder. Indexing allows Samtools to easily navigate fasta files of any size.
 
 ```{warning}
-The sequence IDs of the fasta file and the index (fai) file have to match. If you change any sequence IDs in the fasta file after running `samtools faidx` the two files will no longer match and you will get an error. If you decide to change any sequence IDs in your original fasta file, make sure to delete the associated index file and then re-run the `samtools faidx` command.
+The sequence IDs of the fasta file and the index (.fai) file have to match. If you change any sequence IDs in the fasta file after running `samtools faidx` the two files will no longer match and you will get an error. If you decide to change any sequence IDs in your original fasta file, make sure to delete the associated index file and then re-run the `samtools faidx` command.
 ```
 
 To extract the gene we found with BLAST, we also use the `faidx` command. But this time we add the name of the sequence we're interested in. __Make sure to wrap the name in quotes so Terminal does not try to interpret characters in the sequence name as regular expressions__:
@@ -359,7 +359,7 @@ Load these new results into [ALIGNMENTVIEWER](https://alignmentviewer.org) and s
 
 Proteins play specific functions in biology. Proteins are often modular in their function, and some modules are more critical than others. Parts of the protein that are critical for specific tasks (e.g. binding to DNA, performing a catalytic reaction, interacting with another protein) often remain under strict selective pressure even as the rest of the protein evolves. The result is that homologous proteins often have highly conserved regions called __conserved protein domains__. Proteins that share a known conserved protein domain are almost certainly homologous. 
 
-### 5.9.2. Introducing the PFAM database
+### 5.9.2. Introducing the Pfam database
 
 [The Pfam database](https://pfam.xfam.org) is a large collection of protein families, with information on known conserved protein domains. We can use our original Seripauperin query sequence to see if this protein has any conserved domains. I'm reprinting the query sequence below; use the [Pfam Sequence Search](https://pfam.xfam.org) function to look for conserved domains:
 
@@ -413,7 +413,61 @@ To make life easier I have reproduced the results below and provide them as a te
 |sp\|P33890\|TIR2_YEAST_Cold_shock-induced_protein_TIR2|207|224|207|224|PF00399.19|PIR|1|18|18|28.45|8.1e-07|9.0e-11|1|0||
 |sp\|Q12218\|TIR4_YEAST_Cell_wall_protein_TIR4|13|113|13|116|PF00660.17|SRP1_TIP1|1|96|99|109.15|8.6e-32|4.8e-36|1|0|
 
-Several of the sequences lack a "SRP1_TIP1" domain. We don't want to keep those. We can use `grep` to keep the lines that have this domain. We can then use `awk` and `xargs samtools faidx` to extract these domains, based on the "alignment start" and "alignment end" coordinates (columns 2 and 3 in the table above):
+### 5.9.4. Find conserved domains with a local version of Pfam and HMMER
+
+
+The PFAM website limits the number of protein queries you can submit. If you have a large number of protein sequences, you are better off downloading and running the search on your personal computer. This is also a good approach if you are trying to automate your data analysis and don't want to wait for the PFAM website to return results.
+
+First you will need the program [HMMER](http://hmmer.org). The program is similar to BLAST in that it performs similarity alignments between sequences, but it uses probabilistic models called profile hidden Markov models (profile HMMs) to perform these alignments.
+
+[The HMMER website](http://hmmer.org) provides binaries that are easy to install, or you can install it using Homebrew:
+
+```
+brew search hmmer
+brew install hmmer
+```
+
+In addition to HMMER, you need the Pfam HMM database to perform your searches. You can go to the [PFAM website](http://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/) to download it, or download it directly using 'wget' (you should already have wget installed from Lesson 0, but if not you can install it with Homebrew).
+
+Yellow boxes (alert-warning)
+<div class="alert alert-block alert-warning">
+<b>Warning: Once formatted, the Pfam HMM database is big! (>1.5Gb)</b> It's too big for you to load into your GitHub account. In the code below I install the database in my local home directory, but you may want to pick a different location.
+</div>
+
+```
+# Move to your local computer's home directory and make a "Pfam" folder
+cd ~
+mkdir Pfam
+cd Pfam
+
+# Install the Pfam database with wget
+wget ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz
+```
+
+Once the file is downloaded, you can uncompress and prepare the Pfam database for use with HMMER:
+
+```
+gunzip Pfam-A.hmm.gz
+hmmpress Pfam-A.hmm
+```
+
+To perform your search, use the 'hmmscan' program bundled with HMMER:
+
+```
+# move back into the lab training folder
+cd ~/git/Lab_Manual/Additional_Materials
+
+# perform a HMMER search against the PFAM HMM database
+    # note: you can adjust the number of CPUs based on the hardware of your computer
+    # note: if you put your Pfam database somewhere besides your home directory, make sure to adjust the code "~/Pfam/Pfam-A.hmm" to point to the correct file
+hmmscan --cpu 4 --domtblout Pfam.out ~/Pfam/Pfam-A.hmm Lesson_5_3_PAU5_BLAST_Hits.fasta > Pfam.log
+```
+
+The file "Pfam.out" should contain the same results provided in the file "Lesson_5_PFAM_Hits.txt".
+
+### 5.9.5. Extract conserved domains based on a Pfam search
+
+Going back to the results from 5.9.3., you will notice that some of the sequences lack a "SRP1_TIP1" domain. We don't want to keep those. We can use `grep` to keep the lines that have this domain. We can then use `awk` and `xargs samtools faidx` to extract these domains, based on the "alignment start" and "alignment end" coordinates (columns 2 and 3 in the table above):
 
 ```
 grep 'SRP1_TIP1' Lesson_5_PFAM_Hits.txt > Temp1.txt
@@ -425,7 +479,9 @@ xargs samtools faidx Lesson_4_Yeast_Proteome.fasta < Temp2.txt > Lesson_5_7_PAU5
 muscle -in Lesson_5_7_PAU5_PFAM.fasta -out Lesson_5_8_PAU5_MUSCLE_PFAM.fasta
 
 rm -i Temp*
+
 ```
+
 
 Load these new results into [ALIGNMENTVIEWER](https://alignmentviewer.org) and see how they compare.
 

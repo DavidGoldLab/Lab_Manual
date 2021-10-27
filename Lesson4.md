@@ -11,7 +11,7 @@ Check for any changes in the course material on GitHub:
     
 ## 4.0. What are homologous genes?
 
-In comparative genomics, our goal is to understand the evolution and function of genes (as well as other genetic elements). To compare genes between individuals or species, we need to indetify __homologous__ bits of DNA. [Homologous DNA](https://en.wikipedia.org/wiki/Sequence_homology) is DNA that is conserved between to organisms because it was present in their last common ancestor.
+In comparative genomics, our goal is to understand the evolution and function of genes (as well as other parts of the genome). To compare genes between individuals or species, we need to indetify __homologous__ bits of DNA. [Homologous DNA](https://en.wikipedia.org/wiki/Sequence_homology) is DNA that is simmilar between two or more organisms because that DNA region descends from their last common ancestor.
 
 We can identify homologous DNA between organisms based on how similar their DNA or amino acid (if we are working with proteins) sequences are. __While similarities between DNA can be expressed as a percentage (a gene between humans and mice might be 78% similar in its DNA sequences) homology is binary; genes either are or are not derived from an ancestral sequence.__
 

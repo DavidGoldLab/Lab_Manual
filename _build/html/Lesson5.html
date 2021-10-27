@@ -289,12 +289,22 @@
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#introducing-the-pfam-database">
-     5.9.2. Introducing the PFAM database
+     5.9.2. Introducing the Pfam database
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#find-conserved-domains-with-the-pfam-web-server">
      5.9.3. Find conserved domains with the PFAM web server
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-conserved-domains-with-a-local-version-of-pfam-and-hmmer">
+     5.9.4. Find conserved domains with a local version of Pfam and HMMER
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extract-conserved-domains-based-on-a-pfam-search">
+     5.9.5. Extract conserved domains based on a Pfam search
     </a>
    </li>
   </ul>
@@ -427,14 +437,14 @@ Ectocarpus_siliculosus_CBN76684.1_Sterol_methyltransferase	sp|P25087|ERG6_YEAST_
 </div>
 <div class="section" id="retrieving-genetic-data-with-samtools">
 <h2>5.2. Retrieving genetic data with Samtools<a class="headerlink" href="#retrieving-genetic-data-with-samtools" title="Permalink to this headline">¶</a></h2>
-<p>Before we can extract data from a fasta file using Samtools, we need to <strong>index</strong> the file. We can do that with Samtools’ <code class="docutils literal notranslate"><span class="pre">faidx</span></code> command:</p>
+<p>Before we can extract data from a fasta file using Samtools, we need to <strong>index</strong> the file. Indexing a file cretes a database (called an <strong>index file</strong>) which greatly improves lookup speeds. We can do that with Samtools’ <code class="docutils literal notranslate"><span class="pre">faidx</span></code> command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">faidx</span> <span class="n">Lesson_4_Yeast_Proteome</span><span class="o">.</span><span class="n">fasta</span>
 </pre></div>
 </div>
 <p>There is now an index file (Lesson_4_Yeast_Proteome.fasta.fai) added to your folder. Indexing allows Samtools to easily navigate fasta files of any size.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>The sequence IDs of the fasta file and the index (fai) file have to match. If you change any sequence IDs in the fasta file after running <code class="docutils literal notranslate"><span class="pre">samtools</span> <span class="pre">faidx</span></code> the two files will no longer match and you will get an error. If you decide to change any sequence IDs in your original fasta file, make sure to delete the associated index file and then re-run the <code class="docutils literal notranslate"><span class="pre">samtools</span> <span class="pre">faidx</span></code> command.</p>
+<p>The sequence IDs of the fasta file and the index (.fai) file have to match. If you change any sequence IDs in the fasta file after running <code class="docutils literal notranslate"><span class="pre">samtools</span> <span class="pre">faidx</span></code> the two files will no longer match and you will get an error. If you decide to change any sequence IDs in your original fasta file, make sure to delete the associated index file and then re-run the <code class="docutils literal notranslate"><span class="pre">samtools</span> <span class="pre">faidx</span></code> command.</p>
 </div>
 <p>To extract the gene we found with BLAST, we also use the <code class="docutils literal notranslate"><span class="pre">faidx</span></code> command. But this time we add the name of the sequence we’re interested in. <strong>Make sure to wrap the name in quotes so Terminal does not try to interpret characters in the sequence name as regular expressions</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">samtools</span> <span class="n">faidx</span> <span class="n">Lesson_4_Yeast_Proteome</span><span class="o">.</span><span class="n">fasta</span> <span class="s2">&quot;sp|P25087|ERG6_YEAST_Sterol_24-C-methyltransferase&quot;</span>
@@ -668,7 +678,7 @@ PAU5_Saccharomyces_arboricola_EJS43917.1	sp|Q12218|TIR4_YEAST_Cell_wall_protein_
 <p>Proteins play specific functions in biology. Proteins are often modular in their function, and some modules are more critical than others. Parts of the protein that are critical for specific tasks (e.g. binding to DNA, performing a catalytic reaction, interacting with another protein) often remain under strict selective pressure even as the rest of the protein evolves. The result is that homologous proteins often have highly conserved regions called <strong>conserved protein domains</strong>. Proteins that share a known conserved protein domain are almost certainly homologous.</p>
 </div>
 <div class="section" id="introducing-the-pfam-database">
-<h3>5.9.2. Introducing the PFAM database<a class="headerlink" href="#introducing-the-pfam-database" title="Permalink to this headline">¶</a></h3>
+<h3>5.9.2. Introducing the Pfam database<a class="headerlink" href="#introducing-the-pfam-database" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://pfam.xfam.org">The Pfam database</a> is a large collection of protein families, with information on known conserved protein domains. We can use our original Seripauperin query sequence to see if this protein has any conserved domains. I’m reprinting the query sequence below; use the <a class="reference external" href="https://pfam.xfam.org">Pfam Sequence Search</a> function to look for conserved domains:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;PAU5_Saccharomyces_arboricola_EJS43917.1
 MVKLTSIAAGVAAIAAGASAATTTLAQSDEKVNLVELGVYVSDIRAHMAQYYLFQAAHPTETYPIEVAEA
@@ -1266,7 +1276,50 @@ VFNYGDFTTMLTGIAADQVTRMITGVPWYSTRLRPAISSALSKDGIYTIAN
 </tr>
 </tbody>
 </table>
-<p>Several of the sequences lack a “SRP1_TIP1” domain. We don’t want to keep those. We can use <code class="docutils literal notranslate"><span class="pre">grep</span></code> to keep the lines that have this domain. We can then use <code class="docutils literal notranslate"><span class="pre">awk</span></code> and <code class="docutils literal notranslate"><span class="pre">xargs</span> <span class="pre">samtools</span> <span class="pre">faidx</span></code> to extract these domains, based on the “alignment start” and “alignment end” coordinates (columns 2 and 3 in the table above):</p>
+</div>
+<div class="section" id="find-conserved-domains-with-a-local-version-of-pfam-and-hmmer">
+<h3>5.9.4. Find conserved domains with a local version of Pfam and HMMER<a class="headerlink" href="#find-conserved-domains-with-a-local-version-of-pfam-and-hmmer" title="Permalink to this headline">¶</a></h3>
+<p>The PFAM website limits the number of protein queries you can submit. If you have a large number of protein sequences, you are better off downloading and running the search on your personal computer. This is also a good approach if you are trying to automate your data analysis and don’t want to wait for the PFAM website to return results.</p>
+<p>First you will need the program <a class="reference external" href="http://hmmer.org">HMMER</a>. The program is similar to BLAST in that it performs similarity alignments between sequences, but it uses probabilistic models called profile hidden Markov models (profile HMMs) to perform these alignments.</p>
+<p><a class="reference external" href="http://hmmer.org">The HMMER website</a> provides binaries that are easy to install, or you can install it using Homebrew:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">search</span> <span class="n">hmmer</span>
+<span class="n">brew</span> <span class="n">install</span> <span class="n">hmmer</span>
+</pre></div>
+</div>
+<p>In addition to HMMER, you need the Pfam HMM database to perform your searches. You can go to the <a class="reference external" href="http://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/">PFAM website</a> to download it, or download it directly using ‘wget’ (you should already have wget installed from Lesson 0, but if not you can install it with Homebrew).</p>
+<p>Yellow boxes (alert-warning)</p>
+<div class="alert alert-block alert-warning">
+<b>Warning: Once formatted, the Pfam HMM database is big! (>1.5Gb)</b> It's too big for you to load into your GitHub account. In the code below I install the database in my local home directory, but you may want to pick a different location.
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Move to your local computer&#39;s home directory and make a &quot;Pfam&quot; folder</span>
+<span class="n">cd</span> <span class="o">~</span>
+<span class="n">mkdir</span> <span class="n">Pfam</span>
+<span class="n">cd</span> <span class="n">Pfam</span>
+
+<span class="c1"># Install the Pfam database with wget</span>
+<span class="n">wget</span> <span class="n">ftp</span><span class="p">:</span><span class="o">//</span><span class="n">ftp</span><span class="o">.</span><span class="n">ebi</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">uk</span><span class="o">/</span><span class="n">pub</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">Pfam</span><span class="o">/</span><span class="n">current_release</span><span class="o">/</span><span class="n">Pfam</span><span class="o">-</span><span class="n">A</span><span class="o">.</span><span class="n">hmm</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+<p>Once the file is downloaded, you can uncompress and prepare the Pfam database for use with HMMER:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gunzip</span> <span class="n">Pfam</span><span class="o">-</span><span class="n">A</span><span class="o">.</span><span class="n">hmm</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">hmmpress</span> <span class="n">Pfam</span><span class="o">-</span><span class="n">A</span><span class="o">.</span><span class="n">hmm</span>
+</pre></div>
+</div>
+<p>To perform your search, use the ‘hmmscan’ program bundled with HMMER:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># move back into the lab training folder</span>
+<span class="n">cd</span> <span class="o">~/</span><span class="n">git</span><span class="o">/</span><span class="n">Lab_Manual</span><span class="o">/</span><span class="n">Additional_Materials</span>
+
+<span class="c1"># perform a HMMER search against the PFAM HMM database</span>
+    <span class="c1"># note: you can adjust the number of CPUs based on the hardware of your computer</span>
+    <span class="c1"># note: if you put your Pfam database somewhere besides your home directory, make sure to adjust the code &quot;~/Pfam/Pfam-A.hmm&quot; to point to the correct file</span>
+<span class="n">hmmscan</span> <span class="o">--</span><span class="n">cpu</span> <span class="mi">4</span> <span class="o">--</span><span class="n">domtblout</span> <span class="n">Pfam</span><span class="o">.</span><span class="n">out</span> <span class="o">~/</span><span class="n">Pfam</span><span class="o">/</span><span class="n">Pfam</span><span class="o">-</span><span class="n">A</span><span class="o">.</span><span class="n">hmm</span> <span class="n">Lesson_5_3_PAU5_BLAST_Hits</span><span class="o">.</span><span class="n">fasta</span> <span class="o">&gt;</span> <span class="n">Pfam</span><span class="o">.</span><span class="n">log</span>
+</pre></div>
+</div>
+<p>The file “Pfam.out” should contain the same results provided in the file “Lesson_5_PFAM_Hits.txt”.</p>
+</div>
+<div class="section" id="extract-conserved-domains-based-on-a-pfam-search">
+<h3>5.9.5. Extract conserved domains based on a Pfam search<a class="headerlink" href="#extract-conserved-domains-based-on-a-pfam-search" title="Permalink to this headline">¶</a></h3>
+<p>Going back to the results from 5.9.3., you will notice that some of the sequences lack a “SRP1_TIP1” domain. We don’t want to keep those. We can use <code class="docutils literal notranslate"><span class="pre">grep</span></code> to keep the lines that have this domain. We can then use <code class="docutils literal notranslate"><span class="pre">awk</span></code> and <code class="docutils literal notranslate"><span class="pre">xargs</span> <span class="pre">samtools</span> <span class="pre">faidx</span></code> to extract these domains, based on the “alignment start” and “alignment end” coordinates (columns 2 and 3 in the table above):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">grep</span> <span class="s1">&#39;SRP1_TIP1&#39;</span> <span class="n">Lesson_5_PFAM_Hits</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">Temp1</span><span class="o">.</span><span class="n">txt</span>
 
 <span class="n">awk</span> <span class="s1">&#39;{print &quot;</span><span class="se">\042</span><span class="s1">&quot;$1&quot;</span><span class="se">\042</span><span class="s1">&quot;&quot;:&quot;$2&quot;-&quot;$3}&#39;</span> <span class="n">Temp1</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">Temp2</span><span class="o">.</span><span class="n">txt</span>
@@ -1276,6 +1329,7 @@ VFNYGDFTTMLTGIAADQVTRMITGVPWYSTRLRPAISSALSKDGIYTIAN
 <span class="n">muscle</span> <span class="o">-</span><span class="ow">in</span> <span class="n">Lesson_5_7_PAU5_PFAM</span><span class="o">.</span><span class="n">fasta</span> <span class="o">-</span><span class="n">out</span> <span class="n">Lesson_5_8_PAU5_MUSCLE_PFAM</span><span class="o">.</span><span class="n">fasta</span>
 
 <span class="n">rm</span> <span class="o">-</span><span class="n">i</span> <span class="n">Temp</span><span class="o">*</span>
+
 </pre></div>
 </div>
 <p>Load these new results into <a class="reference external" href="https://alignmentviewer.org">ALIGNMENTVIEWER</a> and see how they compare.</p>
